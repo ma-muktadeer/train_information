@@ -1,3 +1,6 @@
+<!-- <div class="p-0 bg-blue-600">
+    This div has no padding on any side.
+</div> -->
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
 
     <div class="w-full max-w-md mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
@@ -11,13 +14,23 @@
                 BETA
             </span>
         </div>
-
+        
         <div class="mb-6">
             <p class="text-gray-700 text-sm mb-2">Train Name</p>
-            <div class="custom-input-group">
+            <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
+                <mat-label>Number</mat-label>
+                <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option.value">{{option.name}}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+            <!-- <div class="custom-input-group">
                 <span class="material-icons">train</span>
                 <input type="text" placeholder="Enter train name">
-            </div>
+            </div> -->
         </div>
 
         <div class="mb-8">
@@ -35,13 +48,15 @@
 
         <p class="text-center text-gray-700 text-sm mb-8">
             This project is open source. Check it out on
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:underline font-medium">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                class="text-green-600 hover:underline font-medium">
                 GitHub
             </a>
             .
         </p>
 
-        <div class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg">
+        <div
+            class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg">
             <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
                 <span class="material-icons text-base">event_available</span>
                 <span class="text-sm">Seat Availability</span>

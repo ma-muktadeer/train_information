@@ -14,20 +14,20 @@ export class StationsService {
     this.readStations();
     
   }
- async readStations() {
+ private async readStations() {
    if (!this._stations) {
       this._stations =await this._api.getStations();
     }
   }
 
-  getStations(): Station[] {
+ public async getStations(): Promise<Station[]> {
     try {
       debugger
       const stations = this._stations;
       if (stations) {
         return stations;
       } else {
-        this.readStations();
+        await this.readStations();
         return this._stations;  
 
       }

@@ -1,40 +1,91 @@
-// @use '@angular/material' as mat;
+@use '@angular/material' as mat;
 
-// @include mat.core();
+// 1. Required core styles
+@include mat.core();
 
-// $custom-theme: mat.define-theme((
-//   color: (
-//     theme-type: light,
-//     primary: #00695c,
-//     tertiary: #4caf50,
-//     use-system-variables: true
-//   ),
-//   typography: (
-//     brand-family: 'Inter, Roboto, sans-serif',
-//     plain-family: 'Inter, Roboto, sans-serif'
-//   ),
-//   density: (
-//     scale: 0
-//   )
-// ));
+// 2. Define custom M3 theme
+$my-light-theme: mat.define-theme((color: (theme-type: light,
+                primary: mat.$violet-palette, // Use your own palette here if needed
+                tertiary: mat.$blue-palette,
+            ),
+            typography: (brand-family: 'Roboto',
+                plain-family: 'Roboto',
+            ),
+            density: (scale: 0,
+            )));
 
-// // ✅ Apply Material 3 styles inside a selector
-// :root {
-//   @include mat.all-component-themes($custom-theme);
+// 3. Apply the theme to components inside a selector (required in M3)
+:root {
+    @include mat.all-component-themes($my-light-theme);
+}
 
-//   // ✅ Additional color tokens (NOT part of mat theme)
-//   --md-sys-color-on-primary: #ffffff;
-//   --md-sys-color-primary-container: #a7ffeb;
-//   --md-sys-color-on-primary-container: #00332c;
+mat-form-field {
+    @include mat.form-field-theme($my-light-theme);
+}
 
-//   --md-sys-color-surface: #ffffff;
-//   --md-sys-color-on-surface: #1b1b1f;
+.custom-input-group {
+    background-color: rgb(241, 248, 243) !important;
+    display: flex;
+    align-items: center;
+    // background-color: #F9FAFB;
+    /* bg-gray-50 */
+    // border: 1px solid #D1D5DB;
+    /* border-gray-300 */
+    border-radius: 0.75rem;
+    /* rounded-xl */
+    // padding: 0.5rem 1rem;
+    /* Adjust padding as needed */
+    transition: all 0.2s ease-in-out;
 
-//   --md-sys-color-background: #f1f1f1;
-//   --md-sys-color-on-background: #1b1b1f;
+    :focus-within {
+        border-color: rgb(0, 103, 71);
+        /* primary-green on focus */
+        box-shadow: rgb(1, 68, 47);
+        /* Optional: inner shadow for focus */
+    }
 
-//   --md-sys-color-secondary: #4caf50;
-//   --md-sys-color-on-secondary: #ffffff;
-//   --md-sys-color-secondary-container: #c8e6c9;
-//   --md-sys-color-on-secondary-container: #003916;
-// }
+    .mdc-text-field--filled{
+        background-color: transparent !important;
+        border: none !important;
+        outline: none !important;
+        padding: 0 0.5rem !important;
+        /* Adjust padding for input text */
+        color: rgb(0, 103, 71) !important;
+        /* text-gray-900 */
+    }
+}
+mat-option{
+    color: rgb(0, 103, 71) !important;
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
+  background-color: rgb(202, 238, 212) !important;
+  font-weight: 700;
+}
+.mdc-floating-label{
+    color: rgb(0, 103, 71) !important;
+    /* text-gray-900 */
+    font-size: 1rem !important;
+    /* text-base */
+}
+input{
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0.5rem 0.75rem !important;
+    /* Adjust padding for input text */
+    color: rgb(0, 103, 71) !important;
+    /* text-gray-900 */
+}
+
+.mdc-line-ripple::before{
+    border-bottom-color: rgb(0, 103, 71) !important;
+}
+.mdc-line-ripple::after{
+    border-bottom-color: rgb(0, 103, 71) !important;
+}
+.mat-mdc-autocomplete-panel{
+    background-color: rgb(241, 248, 243) !important;
+}
+.cdk-overlay-pane{
+    background-color: rgb(241, 248, 243) !important;
+}
