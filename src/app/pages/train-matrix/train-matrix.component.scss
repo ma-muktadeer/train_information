@@ -1,0 +1,67 @@
+/* Custom styling for the input fields to mimic Material 3 outlined inputs with inner icons */
+.custom-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #F9FAFB;
+    /* bg-gray-50 */
+    border: 1px solid #D1D5DB;
+    /* border-gray-300 */
+    border-radius: 0.75rem;
+    /* rounded-xl */
+    padding: 0.5rem 1rem;
+    /* Adjust padding as needed */
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-input-group:focus-within {
+    border-color: #16A34A;
+    /* primary-green on focus */
+    box-shadow: 0 0 0 1px #16A34A;
+    /* Optional: inner shadow for focus */
+}
+
+.custom-input-group input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0.5rem 0.75rem;
+    /* Adjust padding for input text */
+    color: #1F2937;
+    /* text-gray-900 */
+}
+
+.custom-input-group input::placeholder {
+    color: #9CA3AF;
+    /* text-gray-400 */
+}
+
+.custom-input-group .material-icons {
+    font-size: 1.5rem;
+    /* text-2xl */
+    color: #9CA3AF;
+    /* text-gray-400 */
+}
+
+/* Material 3-like button styles */
+.btn-material {
+    background-color: #16A34A;
+    /* Primary green */
+    color: white;
+    font-weight: 600;
+    /* font-semibold */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    /* rounded-xl */
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* space-x-2 */
+}
+
+.btn-material:hover {
+    background-color: #15803D;
+    /* Darker green on hover */
+}

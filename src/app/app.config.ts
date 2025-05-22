@@ -2,9 +2,11 @@ import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@
 import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { provideClientHydration, withEventReplay, withHttpTransferCacheOptions } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ApiService } from '../services/api.service';
+import { SeoService } from '../services/SeoService';
 import { StationsService } from '../services/stations.service';
 import { routes } from './app.routes';
 
@@ -36,10 +38,15 @@ export const appConfig: ApplicationConfig = {
     
     // 4. SSR & Hydration
     provideClientHydration(
-      withEventReplay()
+      withEventReplay(),
+      withHttpTransferCacheOptions({
+      includePostRequests: true
+    })
     ),
     provideAnimations(),
+    provideNativeDateAdapter(),
     StationsService,
     ApiService,
+    SeoService,
   ]
 };

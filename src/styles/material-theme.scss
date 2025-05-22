@@ -1,49 +1,40 @@
 // @use '@angular/material' as mat;
-// @use '@material/web' as mdc;
 
-// // Define your Material 3 theme
-// @use '@material/theme/theme' as mdc-theme;
-// @use '@material/theme/theme-color' as mdc-color;
-
-// // Define your color palette
-// $primary: #6750A4;
-// $on-primary: #FFFFFF;
-// $primary-container: #EADDFF;
-// $on-primary-container: #21005D;
-
-// // Apply colors to MDC components
-// :root {
-//   // Primary colors
-//   --md-sys-color-primary: #{$primary};
-//   --md-sys-color-on-primary: #{$on-primary};
-//   --md-sys-color-primary-container: #{$primary-container};
-//   --md-sys-color-on-primary-container: #{$on-primary-container};
-  
-//   // Surface colors
-//   --md-sys-color-surface: #FFFBFE;
-//   --md-sys-color-on-surface: #1C1B1F;
-  
-//   // Add more custom properties as needed
-// }
-
-// // Include Angular Material core styles
 // @include mat.core();
 
-// // Create Angular Material theme
-// $angular-material-theme: mat.define-theme((
+// $custom-theme: mat.define-theme((
 //   color: (
 //     theme-type: light,
-//     primary: mat.$violet-palette,
-//     tertiary: mat.$blue-palette,
+//     primary: #00695c,
+//     tertiary: #4caf50,
+//     use-system-variables: true
 //   ),
 //   typography: (
-//     brand-family: 'Roboto',
-//     plain-family: 'Roboto',
+//     brand-family: 'Inter, Roboto, sans-serif',
+//     plain-family: 'Inter, Roboto, sans-serif'
 //   ),
 //   density: (
-//     scale: 0,
+//     scale: 0
 //   )
 // ));
 
-// // Apply the theme to Angular Material components
-// @include mat.all-component-themes($angular-material-theme);
+// // ✅ Apply Material 3 styles inside a selector
+// :root {
+//   @include mat.all-component-themes($custom-theme);
+
+//   // ✅ Additional color tokens (NOT part of mat theme)
+//   --md-sys-color-on-primary: #ffffff;
+//   --md-sys-color-primary-container: #a7ffeb;
+//   --md-sys-color-on-primary-container: #00332c;
+
+//   --md-sys-color-surface: #ffffff;
+//   --md-sys-color-on-surface: #1b1b1f;
+
+//   --md-sys-color-background: #f1f1f1;
+//   --md-sys-color-on-background: #1b1b1f;
+
+//   --md-sys-color-secondary: #4caf50;
+//   --md-sys-color-on-secondary: #ffffff;
+//   --md-sys-color-secondary-container: #c8e6c9;
+//   --md-sys-color-on-secondary-container: #003916;
+// }

@@ -20,6 +20,9 @@
             "outputPath": "dist/tst-mat",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "prerender":{
+              "discoverRoutes": true
+            },
             "polyfills": [
             ],
             "tsConfig": "tsconfig.app.json",
