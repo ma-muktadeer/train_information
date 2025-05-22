@@ -35,7 +35,9 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
+<button mat-raised-button (click)="readFile()">Basic</button>
 <!-- <md-filled-button>Material Web Button</md-filled-button>
 <md-checkbox>Checkbox</md-checkbox> -->
 
 <router-outlet />
+{{st | json}}

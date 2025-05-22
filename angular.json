@@ -37,6 +37,11 @@
               {
                 "glob": "**/*",
                 "input": "src/favicon.ico"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/jsons",
+                "output": "/assets/jsons"
               }
             ],
             "styles": [

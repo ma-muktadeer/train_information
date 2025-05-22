@@ -8,7 +8,7 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-     // 1. Experimental Features
+     // 1. Experimental Features 
     provideExperimentalZonelessChangeDetection(),
     
     // 2. Router Configuration
