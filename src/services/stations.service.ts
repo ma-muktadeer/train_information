@@ -14,9 +14,9 @@ export class StationsService {
     this.readStations();
     
   }
-  readStations() {
+ async readStations() {
    if (!this._stations) {
-      this._stations = this._api.getStations();
+      this._stations =await this._api.getStations();
     }
   }
 

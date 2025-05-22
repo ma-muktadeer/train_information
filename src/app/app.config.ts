@@ -1,14 +1,20 @@
-import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
+
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { StationsService } from '../services/stations.service';
 import { routes } from './app.routes';
-
 
 export const appConfig: ApplicationConfig = {
   providers: [
-     // 1. Experimental Features 
+    // provideExperimentalZonelessChangeDetection(),
+    // provideRouter(routes, withEnabledBlockingInitialNavigation()),
+    // provideHttpClient(withFetch()),
+    // provideClientHydration(withEventReplay())
+
     provideExperimentalZonelessChangeDetection(),
     
     // 2. Router Configuration
@@ -32,14 +38,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(
       withEventReplay()
     ),
-    
-    // 5. Animations
     provideAnimations(),
-    
-    // 6. Add other providers here
-    // { provide: SOME_TOKEN, useValue: someValue }
-    
-    // For Material 3, consider adding:
-    // provideMaterial3Theme()
+    StationsService,
+    ApiService,
   ]
 };

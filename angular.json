@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "train_info": {
+    "tst-mat": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/train_info",
+            "outputPath": "dist/tst-mat",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -36,10 +36,6 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/favicon.ico"
-              },
-              {
-                "glob": "**/*",
                 "input": "src/assets/jsons",
                 "output": "/assets/jsons"
               }
@@ -54,8 +50,7 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            },
-            "externalDependencies": ["@angular/animations"]
+            }
           },
           "configurations": {
             "production": {
@@ -85,10 +80,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "train_info:build:production"
+              "buildTarget": "tst-mat:build:production"
             },
             "development": {
-              "buildTarget": "train_info:build:development"
+              "buildTarget": "tst-mat:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -107,6 +102,10 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets"
               }
             ],
             "styles": [
@@ -120,6 +119,6 @@
     }
   },
   "cli": {
-    "analytics": "c51992af-07b0-4bb1-bb7c-45dc2ef63be1"
+    "analytics": false
   }
 }
