@@ -45,7 +45,7 @@ mat-form-field {
         /* Optional: inner shadow for focus */
     }
 
-    .mdc-text-field--filled{
+    .mdc-text-field--filled {
         background-color: transparent !important;
         border: none !important;
         outline: none !important;
@@ -55,20 +55,24 @@ mat-form-field {
         /* text-gray-900 */
     }
 }
-mat-option{
+
+mat-option {
     color: rgb(0, 103, 71) !important;
 }
+
 .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
-  background-color: rgb(202, 238, 212) !important;
-  font-weight: 700;
+    background-color: rgb(202, 238, 212) !important;
+    font-weight: 700;
 }
-.mdc-floating-label{
+
+.mdc-floating-label {
     color: rgb(0, 103, 71) !important;
     /* text-gray-900 */
     font-size: 1rem !important;
     /* text-base */
 }
-input{
+
+input {
     background-color: transparent !important;
     border: none !important;
     outline: none !important;
@@ -78,15 +82,97 @@ input{
     /* text-gray-900 */
 }
 
-.mdc-line-ripple::before{
+.mdc-line-ripple::before {
     border-bottom-color: rgb(0, 103, 71) !important;
 }
-.mdc-line-ripple::after{
+
+.mdc-line-ripple::after {
     border-bottom-color: rgb(0, 103, 71) !important;
 }
-.mat-mdc-autocomplete-panel{
+
+.mat-mdc-autocomplete-panel {
     background-color: rgb(241, 248, 243) !important;
 }
-.cdk-overlay-pane{
+
+.cdk-overlay-pane {
     background-color: rgb(241, 248, 243) !important;
+}
+
+// .mat-datepicker-content-container{
+//     background-color: rgb(241, 248, 243) !important;
+//     border-radius: 5% !important;
+//     ::shadow{
+//         background-color: rgb(210, 212, 211) !important;
+//     }
+// }
+
+.mat-datepicker-content-container,
+// For older versions (if still relevant)
+.mat-mdc-datepicker-content {
+    // For Angular Material 15+ (MDC-based)
+    // Base card styling
+    background-color: rgb(220, 230, 225) !important; // Light green background from your snippet
+    border-radius: 12px; // More common for card-like rounding than 5%
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1); // Add a subtle shadow
+    overflow: hidden; // Ensures content respects border-radius
+
+    // Inner elements for a 'layered' card effect (if that's what ::shadow was aiming for)
+    // You'd target specific internal elements.
+    // For example, if you wanted the calendar header to have a different background:
+    .mat-calendar-header {
+        // background-color: rgb(220, 230, 225) !important; 
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05); // Subtle separator
+    }
+
+    .mat-calendar-content {
+        background-color: rgb(255, 255, 255) !important;
+        padding: 16px;
+    }
+
+    // Styles for the selected date (from previous turns, adjusted for card style)
+    .mat-calendar-body-cell-content {
+        border: rgb(231, 247, 236) solid 1px;
+        border-radius: 6px;
+        padding: 0.5rem; // Padding for the content
+        background-color: rgb(241, 248, 243) !important;
+        // background-color: rgb(241, 248, 243) !important; 
+    }
+
+    .mat-calendar-body-selected {
+        background-color: rgb(0, 103, 71) !important;
+        color: white !important;
+        font-weight: 800;
+    }
+
+    .mat-calendar-body-today {
+        border-radius: rgb(0, 103, 71) !important;
+    }
+
+    // Styles for "today" (from previous turns)
+    .mat-calendar-body-today {
+        border: 1px solid #D1D5DB; // Lighter border for today
+        background-color: #F9FAFB !important; // Ensure it's not fully filled
+        color: #333 !important;
+    }
+
+    // Hover state (from previous turns)
+    .mat-calendar-body-active {
+        background-color: rgba(22, 163, 74, 0.1) !important;
+        /* Lighter green on hover */
+    }
+
+    // Adjust cells for card-like feel
+    .mat-calendar-body-cell {
+        border-radius: 6px; // Slightly rounded cells
+        height: 38px; // Adjust size
+        width: 38px;
+        margin: 2px; // Spacing between cells
+    }
+
+    // Optional: style the month/year view buttons
+    .mat-calendar-period-button,
+    .mat-calendar-table-header {
+        font-weight: 500;
+    }
 }

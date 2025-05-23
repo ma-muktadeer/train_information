@@ -14,37 +14,84 @@
                 BETA
             </span>
         </div>
-        
-        <div class="mb-6">
-            <p class="text-gray-700 text-sm mb-2">Train Name</p>
-            <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
-                <mat-label>Number</mat-label>
-                <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
-                    [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                    @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option.value">{{option.name}}</mat-option>
+        <form [formGroup]="trainForm">
+
+            <div class="mb-6">
+                <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
+                    <mat-label>Origin Station</mat-label>
+                    <mat-icon matPrefix class="text-gray-400" [svgIcon]="iconName"></mat-icon>
+                    <input type="text" placeholder="Pick one" aria-label="Origin Station" matInput
+                        formControlName="from_city" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        @for (option of filteredFormStarions | async; track option) {
+                        <mat-option [value]="option.value">{{option.name}}</mat-option>
+                        }
+                    </mat-autocomplete>
+                    @if (trainForm.get('from_city')?.hasError('required') && trainForm.get('from_city')?.touched) {
+                    <mat-error>Destination station is required</mat-error>
                     }
-                </mat-autocomplete>
-            </mat-form-field>
-            <!-- <div class="custom-input-group">
-                <span class="material-icons">train</span>
-                <input type="text" placeholder="Enter train name">
-            </div> -->
-        </div>
-
-        <div class="mb-8">
-            <p class="text-gray-700 text-sm mb-2">Date of Journey</p>
-            <div class="custom-input-group">
-                <span class="material-icons">calendar_month</span>
-                <input type="date" placeholder="Select a date">
+                </mat-form-field>
             </div>
-        </div>
 
-        <button type="button" class="w-full mb-8 btn-material">
-            <span class="material-icons">event_available</span>
-            Generate Matrix
-        </button>
+            <div class="mb-6">
+                <!-- <p class="text-gray-700 text-sm mb-2">Destination Station</p> -->
+                <mat-form-field appearance="fill" class="w-full custom-input-group">
+                    <mat-label>Destination Station</mat-label>
+                    <mat-icon matPrefix class="text-gray-400" [svgIcon]="'train_icon'"></mat-icon>
+                    <input type="text" placeholder="Type or select a destination station" matInput
+                        formControlName="to_city" [matAutocomplete]="autoDestination">
+                    <mat-autocomplete #autoDestination="matAutocomplete">
+                        @for (option of filteredDestinationStations | async; track option) {
+                        <mat-option [value]="option.value">{{option.name}}</mat-option>
+                        }
+                    </mat-autocomplete>
+                    @if (trainForm.get('to_city')?.hasError('required') && trainForm.get('to_city')?.touched) {
+                    <mat-error>Destination station is required</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <div class="mb-6">
+                <!-- <p class="text-gray-700 text-sm mb-2">Date of Journey</p> -->
+                <mat-form-field appearance="fill" class="w-full custom-input-group">
+                    <mat-label>Date of Journey</mat-label>
+                    <mat-icon matPrefix class="text-gray-400" [svgIcon]="'calendar_icon'"></mat-icon>
+                    <input matInput [matDatepicker]="picker" formControlName="date_of_journey" (click)="picker.open()"
+                        readonly [max]="max" [min]="min">
+                    <!-- <input matInput [matDatepicker]="picker" formControlName="date_of_journey" (click)="picker.open()"
+                        readonly> -->
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker panelClass="custom-calendar"></mat-datepicker>
+                    @if (trainForm.get('date_of_journey')?.hasError('required') &&
+                    trainForm.get('date_of_journey')?.touched) {
+                    <mat-error>Date of journey is required</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <div class="mb-6">
+                <!-- <p class="text-gray-700 text-sm mb-2">Seat Class</p> -->
+                <mat-form-field appearance="fill" class="w-full custom-input-group">
+                    <mat-label>Seat Class</mat-label>
+                    <mat-select formControlName="seat_class">
+                        <mat-option value="SUVON">SUVON</mat-option>
+                        <mat-option value="SHOVON">SHOVON</mat-option>
+                        <mat-option value="SNIGDHA">SNIGDHA</mat-option>
+                        <mat-option value="AC_BERTH">AC_BERTH</mat-option>
+                        <mat-option value="AC_CHAIR">AC_CHAIR</mat-option>
+                    </mat-select>
+                    @if (trainForm.get('seat_class')?.hasError('required') && trainForm.get('seat_class')?.touched) {
+                    <mat-error>Seat class is required</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="trainForm.invalid"
+               (click)="search()" class="w-full py-3 rounded-xl font-semibold text-base mt-4">
+                Search Trains
+            </button>
+
+        </form>
 
         <p class="text-center text-gray-700 text-sm mb-8">
             This project is open source. Check it out on

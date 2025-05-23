@@ -41,6 +41,11 @@
                 "glob": "**/*",
                 "input": "src/assets/jsons",
                 "output": "/assets/jsons"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/icons",
+                "output": "/assets/icons"
               }
             ],
             "styles": [
