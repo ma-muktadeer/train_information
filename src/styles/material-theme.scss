@@ -21,6 +21,7 @@ $my-light-theme: mat.define-theme((color: (theme-type: light,
 
 mat-form-field {
     @include mat.form-field-theme($my-light-theme);
+    width: 100% !important;
 }
 
 .custom-input-group {

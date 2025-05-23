@@ -12,23 +12,22 @@ export class StationsService {
 
   constructor() {
     this.readStations();
-    
+
   }
- private async readStations() {
-   if (!this._stations) {
-      this._stations =await this._api.getStations();
+  private async readStations() {
+    if (!this._stations) {
+      this._stations = await this._api.getStations();
     }
   }
 
- public async getStations(): Promise<Station[]> {
+  public async getStations(): Promise<Station[]> {
     try {
-      debugger
       const stations = this._stations;
       if (stations) {
         return stations;
       } else {
         await this.readStations();
-        return this._stations;  
+        return this._stations;
 
       }
     } catch (error) {

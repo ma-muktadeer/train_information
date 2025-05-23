@@ -22,32 +22,30 @@ import { StationsService } from '../../../services/stations.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatDividerModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    AsyncPipe, 
+    AsyncPipe,
   ],
   templateUrl: './train-matrix.component.html',
   styleUrl: './train-matrix.component.scss'
 })
 export class TrainMatrixComponent {
-  private readonly _stationService= inject(StationsService);
+  private readonly _stationService = inject(StationsService);
   myControl = new FormControl('');
-  options= signal<Station[]>([]);
+  options = signal<Station[]>([]);
   filteredOptions!: Observable<Station[]>;
-  
+
   constructor() {
     this.getStations();
   }
- async getStations() {
+  async getStations() {
     this.options.set(await this._stationService.getStations());
-    console.log('stations list is',this.options());
-    
+
   }
 
   ngOnInit() {
-    debugger
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || ''))
