@@ -128,6 +128,37 @@ input {
     .mat-calendar-content {
         background-color: rgb(255, 255, 255) !important;
         padding: 16px;
+
+        .mat-calendar-table{
+            .mat-calendar-table-header{
+                tr{
+                    th{
+                        color: rgb(0, 103, 71) !important;
+                        font-weight: 800 !important;
+                    }
+                }
+            }
+            .mat-calendar-body{
+                tr{
+                    td{
+                        color: rgb(0, 103, 71) !important;
+                        font-weight: 600 !important;
+                        button:not(.mat-calendar-body-disabled){
+                            .mat-focus-indicator:not(.mat-calendar-body-selected){
+                                color: rgb(0, 103, 71) !important;
+                                font-weight: 600 !important;
+                                // mat-calendar-body-cell-content mat-focus-indicator
+                            }
+                            .mat-calendar-body-selected{
+                                background-color: rgb(0, 103, 71) !important;
+                                color: white !important;
+                                font-weight: bold !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // Styles for the selected date (from previous turns, adjusted for card style)
@@ -139,21 +170,14 @@ input {
         // background-color: rgb(241, 248, 243) !important; 
     }
 
-    .mat-calendar-body-selected {
-        background-color: rgb(0, 103, 71) !important;
-        color: white !important;
-        font-weight: 800;
-    }
+    // .mat-calendar-body-selected {
+    //     background-color: rgb(0, 103, 71) !important;
+    //     color: white !important;
+    //     font-weight: 800;
+    // }
 
     .mat-calendar-body-today {
-        border-radius: rgb(0, 103, 71) !important;
-    }
-
-    // Styles for "today" (from previous turns)
-    .mat-calendar-body-today {
-        border: 1px solid #D1D5DB; // Lighter border for today
-        background-color: #F9FAFB !important; // Ensure it's not fully filled
-        color: #333 !important;
+        border-color: rgb(0, 103, 71) !important;
     }
 
     // Hover state (from previous turns)
@@ -174,5 +198,20 @@ input {
     .mat-calendar-period-button,
     .mat-calendar-table-header {
         font-weight: 500;
+    }
+    .mat-calendar-controls{
+        .mdc-button__label{
+            color: rgb(0, 103, 71) !important;
+            .mat-calendar-arrow{
+                color: rgb(0, 103, 71) !important;
+            }
+            svg{
+                fill: rgb(0, 103, 71) !important;
+            }
+        }
+        button{
+            color: rgb(0, 103, 71) !important;
+            font-weight: 600 !important;
+        }
     }
 }
