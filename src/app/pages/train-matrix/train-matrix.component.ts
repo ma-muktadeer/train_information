@@ -65,16 +65,16 @@ export class TrainMatrixComponent {
   buildOptions() {
     this.filteredFormStarions = this.trainForm.get('from_city')!.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
+      map(value => this._filter(value || '', this.trainForm.get('to_city')!.value || ''))
     );
     this.filteredDestinationStations = this.trainForm.get('to_city')!.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
+      map(value => this._filter(value || '', this.trainForm.get('from_city')!.value || ''))
     );
   }
-  private _filter(value: string): Station[] {
+  private _filter(value: string, selected: string): Station[] {
     const filterValue = value.toLowerCase();
-    return this.options().filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.options().filter(option => option.name.toLowerCase().includes(filterValue) && option.name.toLowerCase() !== selected.toLowerCase());
   }
 search() {
 console.log(this.trainForm.value);

@@ -97,6 +97,49 @@ input {
 .cdk-overlay-pane {
     background-color: rgb(241, 248, 243) !important;
 }
+button{
+    .btn-primary{
+        background-color: #006747 !important;
+        color: white !important;
+        border-radius: 0.5rem !important;
+        padding: 0.5rem 1rem !important;
+        font-weight: 600 !important;
+        transition: background-color 0.3s ease;
+       mat-icon{
+            svg{
+                fill: white !important;
+            }
+    
+        }
+        
+    }
+    &.mat-mdc-button-disabled{
+        background-color: #D1D5DB !important; 
+        color: #9CA3AF !important;
+        font-weight: 100 !important;
+        cursor: not-allowed !important;
+        mat-icon{
+            svg{
+                fill: #9CA3AF !important;
+            }
+        }
+    }
+    
+    &:disabled {
+        background-color: transparent !important; 
+        color: #9CA3AF !important;
+        cursor: not-allowed !important;
+    }
+    &:not(.mat-mdc-button-disabled) {
+        cursor: pointer !important; 
+    }
+    &:not(.mat-mdc-button-disabled) mat-icon {
+        svg {
+            fill: white !important; 
+        }
+    }
+
+}
 
 // .mat-datepicker-content-container{
 //     background-color: rgb(241, 248, 243) !important;
@@ -199,19 +242,5 @@ input {
     .mat-calendar-table-header {
         font-weight: 500;
     }
-    .mat-calendar-controls{
-        .mdc-button__label{
-            color: rgb(0, 103, 71) !important;
-            .mat-calendar-arrow{
-                color: rgb(0, 103, 71) !important;
-            }
-            svg{
-                fill: rgb(0, 103, 71) !important;
-            }
-        }
-        button{
-            color: rgb(0, 103, 71) !important;
-            font-weight: 600 !important;
-        }
-    }
+    
 }

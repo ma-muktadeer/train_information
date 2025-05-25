@@ -86,8 +86,9 @@
                 </mat-form-field>
             </div>
 
-            <button mat-raised-button color="primary" type="submit" [disabled]="trainForm.invalid"
-               (click)="search()" class="w-full py-3 rounded-xl font-semibold text-base mt-4">
+            <button mat-raised-button type="submit" [disabled]="trainForm.invalid"
+               (click)="search()" class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
+               <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
                 Search Trains
             </button>
 
