@@ -4,6 +4,8 @@ import {
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
+import axios from 'axios'; // ✅ HTTP অনুরোধের জন্য
+import bodyParser from 'body-parser'; // ✅ JSON body read করার জন্য
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,6 +27,29 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+// ✅ JSON Body পার্স করা
+app.use(bodyParser.json());
+// ✅ Shohoz Proxy Route
+app.get('/api/shohoz/search-trips', async (req, res) => {
+  console.log(`Node Express server listening on http://localhost:${req.url}`);
+  console.log(`Node Express server listening on http://localhost:${req.query}`);
+  try {
+    const response = await axios.get(
+      'https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2',
+      {
+        params: req.query,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    res.status(200).json(response.data);
+  } catch (error: any) {
+    console.error('Shohoz API Error:', error?.response?.data || error.message);
+    res.status(error?.response?.status || 500).json({ message: error.message });
+  }
+});
 
 /**
  * Serve static files from /browser

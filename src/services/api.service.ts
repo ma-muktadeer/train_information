@@ -8,11 +8,12 @@ import { Station } from '../interfaces/Station';
 })
 export class ApiService {
   private readonly _http = inject(HttpClient);
+  private readonly _baseUrl = 'https://railspaapi.shohoz.com/v1.0';
 
   constructor() { }
 
   async getStations(): Promise<Station[]> {
-   
+
     try {
       const response = await await firstValueFrom(this._http.get<any>('assets/jsons/stations_en.json'));
       if (response) {
@@ -33,5 +34,26 @@ export class ApiService {
 
   private _nameFilter(name: string): string {
     return name.replace(/'/g, '');
+  }
+
+  searchSeat(data: any) {
+    const pathExtension = 'web/bookings/search-trips-v2';
+    return this._getRequestValue(data, pathExtension);
+  }
+
+  private _getRequestValue(data: any, pathExtension: string) {
+    const url = `${this._baseUrl}/${pathExtension}`;
+    console.log('Request URL:', url);
+    console.log('Request Data:', data);
+    return this._http.get<any>('/api/shohoz/search-trips', {params:data}).subscribe({
+      next: (response) => {
+        console.log('Response:', response);
+        return response;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        throw error;
+      }
+    });
   }
 }

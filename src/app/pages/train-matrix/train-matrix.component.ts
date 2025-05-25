@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { map, Observable, startWith } from 'rxjs';
 import { Station } from '../../../interfaces/Station';
+import { ApiService } from '../../../services/api.service';
 import { StationsService } from '../../../services/stations.service';
 
 
@@ -47,12 +48,12 @@ export class TrainMatrixComponent {
     from_city: new FormControl('', [Validators.required]),
     to_city: new FormControl('', [Validators.required]),
     date_of_journey: new FormControl('', [Validators.required]),
-    seat_class: new FormControl('SUVON', [Validators.required]),
+    seat_class: new FormControl('S_CHAIR', [Validators.required]),
   });
 
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
-  constructor(readonly _dateAdapter: DateAdapter<Date>) {
+  constructor(readonly _dateAdapter: DateAdapter<Date>, private readonly _apiService: ApiService) {
     this.getStations();
   }
   async getStations() {
@@ -85,7 +86,15 @@ export class TrainMatrixComponent {
     const date_of_journey = this._dateAdapter.format(this.trainForm.get('date_of_journey')!.value, 'dd-MMM-yyyy');
     console.log('date_of_journey', date_of_journey);
     
+    const data = {
+      from_city: this.trainForm.get('from_city')!.value,
+      to_city: this.trainForm.get('to_city')!.value,
+      date_of_journey: date_of_journey,
+      seat_class: this.trainForm.get('seat_class')!.value,
+    };
 
+    const value = this._apiService.searchSeat(data);
+    console.log('value', value);
   }
 
 }

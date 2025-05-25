@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/server",
+    "module": "es2020", 
+    "target": "es2020",
+    "moduleResolution": "node",
+    "types": [],
+    "noEmit": false
+  },
+  "files": ["src/main.server.ts"]
+}
