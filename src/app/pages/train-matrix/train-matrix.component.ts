@@ -48,8 +48,8 @@ export class TrainMatrixComponent {
     seat_class: new FormControl('SUVON', [Validators.required]),
   });
 
-  min:Date = new Date();
-  max:Date = new Date(new Date().setDate(new Date().getDate() + 10));
+  min: Date = new Date();
+  max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
   constructor() {
     this.getStations();
   }
@@ -61,7 +61,7 @@ export class TrainMatrixComponent {
   ngOnInit() {
     this.buildOptions()
   }
-  
+
   buildOptions() {
     this.filteredFormStarions = this.trainForm.get('from_city')!.valueChanges.pipe(
       startWith(''),
@@ -76,9 +76,11 @@ export class TrainMatrixComponent {
     const filterValue = value.toLowerCase();
     return this.options().filter(option => option.name.toLowerCase().includes(filterValue) && option.name.toLowerCase() !== selected.toLowerCase());
   }
-search() {
-console.log(this.trainForm.value);
+  search() {
+    console.log(this.trainForm.value);
+    console.log('date is', this.trainForm.get('date_of_journey')!.value);
+    
 
-}
+  }
 
 }
