@@ -60,8 +60,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideNativeDateAdapter(),
     // { provide: MAT_DATE_LOCALE, useValue: 'en-BN' },
-   { provide: MAT_DATE_LOCALE, useValue: 'en-US' }, // Default locale
+    { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
     { provide: DateAdapter, useClass: LuxonDateAdapter },
+    // provideLuxonDateAdapter(),
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
 
     StationsService,

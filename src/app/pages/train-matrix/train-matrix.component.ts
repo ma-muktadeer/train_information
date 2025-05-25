@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { DateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { map, Observable, startWith } from 'rxjs';
 import { Station } from '../../../interfaces/Station';
 import { StationsService } from '../../../services/stations.service';
+
 
 @Component({
   selector: 'app-train-matrix',
@@ -50,7 +52,7 @@ export class TrainMatrixComponent {
 
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
-  constructor() {
+  constructor(readonly _dateAdapter: DateAdapter<Date>) {
     this.getStations();
   }
   async getStations() {
@@ -79,6 +81,9 @@ export class TrainMatrixComponent {
   search() {
     console.log(this.trainForm.value);
     console.log('date is', this.trainForm.get('date_of_journey')!.value);
+
+    const date_of_journey = this._dateAdapter.format(this.trainForm.get('date_of_journey')!.value, 'dd-MMM-yyyy');
+    console.log('date_of_journey', date_of_journey);
     
 
   }
