@@ -8,15 +8,16 @@ import { map, Observable, startWith } from 'rxjs';
 import { Station } from '../../../interfaces/Station';
 import { ApiService } from '../../../services/api.service';
 import { StationsService } from '../../../services/stations.service';
+import { TrainDetailsViewComponent } from '../train-details-view/train-details-view.component';
 
 @Component({
   selector: 'app-train-details',
-  imports: [],
+  imports: [TrainDetailsViewComponent],
   templateUrl: './train-details.component.html',
   styleUrl: './train-details.component.scss'
 })
 export class TrainDetailsComponent {
-  isShow= signal<boolean>(false);
+  isShow = signal<boolean>(false);
 
   options = signal<Station[]>([]);
   filteredFormStarions!: Observable<Station[]>;
@@ -30,6 +31,7 @@ export class TrainDetailsComponent {
 
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
+  searchData = signal<any>({});
 
   constructor(
     private readonly _apiService: ApiService,
@@ -57,7 +59,7 @@ export class TrainDetailsComponent {
 
   ngOnInit() {
     this.buildOptions();
-    if(this.isShow()){
+    if (this.isShow()) {
       this.searchTrainsInfo();
     }
   }
@@ -72,19 +74,21 @@ export class TrainDetailsComponent {
       });
       return;
     }
-    else{
+    else {
 
       const dateObj = DateTime.fromMillis(this.trainForm.get('date_of_journey')!.value.ts);
       const date_of_journey = dateObj.toFormat('dd-MMM-yyyy');
       console.log('date_of_journey', date_of_journey);
-  
+
       const data = {
         from_city: this.trainForm.get('from_city')!.value,
         to_city: this.trainForm.get('to_city')!.value,
         date_of_journey: date_of_journey,
         seat_class: this.trainForm.get('seat_class')!.value,
       };
-  
+
+      this.searchData.update(() => data);
+
       try {
         const value = await this._apiService.searchSeat(data);
         console.log('value', value);

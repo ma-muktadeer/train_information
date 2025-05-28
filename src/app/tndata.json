@@ -1,0 +1,742 @@
+{
+  "data": {
+    "trains": [
+      {
+        "trip_number": "NILSAGAR EXPRESS (766)",
+        "departure_date_time": "29 May, 12:13 am",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 12:13 AM",
+        "arrival_date_time": "29 May, 05:25 am",
+        "travel_time": "05h 12m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433451,
+            "trip_route_id": 53382649,
+            "route_id": 19854,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 12,
+            "destination_city_seq": 16,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433452,
+            "trip_route_id": 53382694,
+            "route_id": 19854,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 12,
+            "destination_city_seq": 16,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 1,
+            "type": "AC_B",
+            "trip_id": 8433453,
+            "trip_route_id": 53382739,
+            "route_id": 19854,
+            "fare": "1260.00",
+            "vat_percent": 15,
+            "vat_amount": 189,
+            "origin_city_seq": 12,
+            "destination_city_seq": 16,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "766",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "chilahati",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-28",
+          "departure_time": "20:00:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "05:25:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108213553,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "12:13 AM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "RANGPUR EXPRESS (772)",
+        "departure_date_time": "29 May, 01:28 am",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 01:28 AM",
+        "arrival_date_time": "29 May, 06:00 am",
+        "travel_time": "04h 32m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433406,
+            "trip_route_id": 53380298,
+            "route_id": 19497,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 12,
+            "destination_city_seq": 14,
+            "seat_counts": {
+              "online": 2,
+              "offline": 1,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433407,
+            "trip_route_id": 53380328,
+            "route_id": 19497,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 12,
+            "destination_city_seq": 14,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 1,
+            "type": "AC_B",
+            "trip_id": 8433691,
+            "trip_route_id": 53390592,
+            "route_id": 19497,
+            "fare": "1260.00",
+            "vat_percent": 15,
+            "vat_amount": 189,
+            "origin_city_seq": 12,
+            "destination_city_seq": 14,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "772",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "rangpur",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-28",
+          "departure_time": "21:40:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "06:00:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108212280,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "01:28 AM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "BURIMARI EXPRESS (810)",
+        "departure_date_time": "29 May, 02:13 am",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 02:13 AM",
+        "arrival_date_time": "29 May, 06:30 am",
+        "travel_time": "04h 17m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433697,
+            "trip_route_id": 53390751,
+            "route_id": 26218,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 13,
+            "destination_city_seq": 14,
+            "seat_counts": {
+              "online": 2,
+              "offline": 2,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433698,
+            "trip_route_id": 53390773,
+            "route_id": 26218,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 13,
+            "destination_city_seq": 14,
+            "seat_counts": {
+              "online": 4,
+              "offline": 4,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "810",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "lalmonirhat",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-28",
+          "departure_time": "21:10:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "06:30:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108218327,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "02:13 AM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "EKOTA EXPRESS (706)",
+        "departure_date_time": "29 May, 02:44 am",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 02:44 AM",
+        "arrival_date_time": "29 May, 07:20 am",
+        "travel_time": "04h 36m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433449,
+            "trip_route_id": 53382513,
+            "route_id": 19440,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 3,
+              "offline": 2,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433450,
+            "trip_route_id": 53382576,
+            "route_id": 19440,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 11,
+              "offline": 11,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 1,
+            "type": "AC_B",
+            "trip_id": 8433458,
+            "trip_route_id": 53383031,
+            "route_id": 19440,
+            "fare": "1260.00",
+            "vat_percent": 15,
+            "vat_amount": 189,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "706",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "panchagarh",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-28",
+          "departure_time": "21:10:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "07:20:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108213475,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "02:44 AM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "CHILAHATI EXPRESS (806)",
+        "departure_date_time": "29 May, 10:04 am",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 10:04 AM",
+        "arrival_date_time": "29 May, 02:55 pm",
+        "travel_time": "04h 51m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433987,
+            "trip_route_id": 53400720,
+            "route_id": 24827,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 10,
+            "destination_city_seq": 13,
+            "seat_counts": {
+              "online": 5,
+              "offline": 4,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433988,
+            "trip_route_id": 53400749,
+            "route_id": 24827,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 10,
+            "destination_city_seq": 13,
+            "seat_counts": {
+              "online": 3,
+              "offline": 3,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "806",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "chilahati",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-29",
+          "departure_time": "06:00:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "14:55:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108224192,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "10:03 AM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "KURIGRAM EXPRESS (798)",
+        "departure_date_time": "29 May, 12:22 pm",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 12:22 PM",
+        "arrival_date_time": "29 May, 05:05 pm",
+        "travel_time": "04h 43m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 2,
+            "type": "AC_S",
+            "trip_id": 8433762,
+            "trip_route_id": 53392544,
+            "route_id": 19745,
+            "fare": "840.00",
+            "vat_percent": 15,
+            "vat_amount": 126,
+            "origin_city_seq": 9,
+            "destination_city_seq": 10,
+            "seat_counts": {
+              "online": 1,
+              "offline": 1,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433764,
+            "trip_route_id": 53392606,
+            "route_id": 19745,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 9,
+            "destination_city_seq": 10,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433765,
+            "trip_route_id": 53392636,
+            "route_id": 19745,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 9,
+            "destination_city_seq": 10,
+            "seat_counts": {
+              "online": 12,
+              "offline": 12,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "798",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "kurigram",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-29",
+          "departure_time": "07:10:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "17:05:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108219481,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "12:22 PM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "DRUTOJAN EXPRESS (758)",
+        "departure_date_time": "29 May, 01:41 pm",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 01:41 PM",
+        "arrival_date_time": "29 May, 06:55 pm",
+        "travel_time": "05h 14m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433803,
+            "trip_route_id": 53394977,
+            "route_id": 19440,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433813,
+            "trip_route_id": 53395697,
+            "route_id": 19440,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 10,
+              "offline": 10,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 2,
+            "type": "AC_S",
+            "trip_id": 8433814,
+            "trip_route_id": 53395772,
+            "route_id": 19440,
+            "fare": "840.00",
+            "vat_percent": 15,
+            "vat_amount": 126,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 2,
+              "offline": 2,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "758",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "panchagarh",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-29",
+          "departure_time": "07:20:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "18:55:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108220672,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "01:41 PM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "LALMONI EXPRESS (752)",
+        "departure_date_time": "29 May, 02:21 pm",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 02:21 PM",
+        "arrival_date_time": "29 May, 07:45 pm",
+        "travel_time": "05h 24m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 2,
+            "type": "AC_S",
+            "trip_id": 8433757,
+            "trip_route_id": 53392363,
+            "route_id": 19676,
+            "fare": "840.00",
+            "vat_percent": 15,
+            "vat_amount": 126,
+            "origin_city_seq": 11,
+            "destination_city_seq": 19,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433758,
+            "trip_route_id": 53392397,
+            "route_id": 19676,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 11,
+            "destination_city_seq": 19,
+            "seat_counts": {
+              "online": 0,
+              "offline": 0,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433759,
+            "trip_route_id": 53392441,
+            "route_id": 19676,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 11,
+            "destination_city_seq": 19,
+            "seat_counts": {
+              "online": 11,
+              "offline": 11,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "752",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "lalmonirhat",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-29",
+          "departure_time": "09:50:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "19:45:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108219336,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "02:21 PM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      },
+      {
+        "trip_number": "PANCHAGARH EXPRESS (794)",
+        "departure_date_time": "29 May, 05:39 pm",
+        "departure_full_date": "2025-05-29",
+        "departure_date_time_jd": "Thu, 29 May 2025, 05:39 PM",
+        "arrival_date_time": "29 May, 10:10 pm",
+        "travel_time": "04h 31m",
+        "origin_city_name": "natore",
+        "destination_city_name": "dhaka",
+        "seat_types": [
+          {
+            "key": 2,
+            "type": "AC_S",
+            "trip_id": 8433751,
+            "trip_route_id": 53392144,
+            "route_id": 19440,
+            "fare": "840.00",
+            "vat_percent": 15,
+            "vat_amount": 126,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 2,
+              "offline": 2,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 7,
+            "type": "S_CHAIR",
+            "trip_id": 8433752,
+            "trip_route_id": 53392177,
+            "route_id": 19440,
+            "fare": "420.00",
+            "vat_percent": 0,
+            "vat_amount": 0,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 59,
+              "offline": 59,
+              "is_divided": true
+            }
+          },
+          {
+            "key": 3,
+            "type": "SNIGDHA",
+            "trip_id": 8433753,
+            "trip_route_id": 53392203,
+            "route_id": 19440,
+            "fare": "700.00",
+            "vat_percent": 15,
+            "vat_amount": 105,
+            "origin_city_seq": 17,
+            "destination_city_seq": 25,
+            "seat_counts": {
+              "online": 3,
+              "offline": 3,
+              "is_divided": true
+            }
+          }
+        ],
+        "train_model": "794",
+        "is_open_for_all": true,
+        "is_eid_trip": 0,
+        "parent_route": {
+          "origin_city_name": "panchagarh",
+          "destination_city_name": "dhaka",
+          "departure_date": "2025-05-29",
+          "departure_time": "12:10:00",
+          "arrival_date": "2025-05-29",
+          "arrival_time": "22:10:00"
+        },
+        "boarding_points": [
+          {
+            "trip_point_id": 108219178,
+            "location_id": 2724,
+            "location_name": "Natore Station",
+            "location_time": "05:39 PM",
+            "location_date": "29 May 2025"
+          }
+        ],
+        "is_international": 0,
+        "is_from_city_international": false
+      }
+    ],
+    "recommendations": [],
+    "selected_seat_class": "S_CHAIR"
+  },
+  "extra": {
+    "hash": "08B3198192820954279CA52F38FE3958"
+  }
+}
