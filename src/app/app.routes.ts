@@ -22,6 +22,23 @@ export const routes: Routes = [
         })
 
     },
+    {
+        path: 'train-details', loadComponent: () => import('./pages/train-details/train-details.component').then(m => m.TrainDetailsComponent),
+        data: {
+            title: 'Train Details',
+            description: 'Train Details',
+            keywords: 'Train Details',
+            robots: 'index, follow',
+            canonical: 'https://example.com/train-details'
+        },
+        pathMatch: 'full',
+        resolve: { seo: seoResolver },
+        ...(typeof ngDevMode === 'undefined' || ngDevMode ? {} : {
+            data: {
+                revalidate: 3600 
+            }
+        })
+    },
 
 
 ];

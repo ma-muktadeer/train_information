@@ -4,16 +4,16 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { DateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { Station } from '../../../interfaces/Station';
-import { ApiService } from '../../../services/api.service';
 import { StationsService } from '../../../services/stations.service';
 
 
@@ -44,6 +44,7 @@ export class TrainMatrixComponent {
   filteredFormStarions!: Observable<Station[]>;
   filteredDestinationStations!: Observable<Station[]>;
   iconName: string = 'train_icon';
+
   trainForm: FormGroup<any> = new FormGroup({
     from_city: new FormControl('', [Validators.required]),
     to_city: new FormControl('', [Validators.required]),
@@ -53,12 +54,12 @@ export class TrainMatrixComponent {
 
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
-  constructor(readonly _dateAdapter: DateAdapter<Date>, private readonly _apiService: ApiService) {
+  constructor(private readonly _router: Router, 
+    private snack: MatSnackBar) {
     this.getStations();
   }
   async getStations() {
     this.options.set(await this._stationService.getStations());
-
   }
 
   ngOnInit() {
@@ -79,22 +80,22 @@ export class TrainMatrixComponent {
     const filterValue = value.toLowerCase();
     return this.options().filter(option => option.name.toLowerCase().includes(filterValue) && option.name.toLowerCase() !== selected.toLowerCase());
   }
-  search() {
-    console.log(this.trainForm.value);
-    console.log('date is', this.trainForm.get('date_of_journey')!.value);
+  async search() {
 
-    const date_of_journey = this._dateAdapter.format(this.trainForm.get('date_of_journey')!.value, 'dd-MMM-yyyy');
-    console.log('date_of_journey', date_of_journey);
+    if (this.trainForm.invalid) {
+      this.snack.open('অনুগ্রহ করে সব ফিল্ড পূরণ করুন।','বন্ধ করুন', {
+        duration: 3000,
+        panelClass: ['mat-toolbar', 'mat-warn'],
+      });
+      return;
+    }
+    this._router.navigate(['/train-details/'], {
+      state: {
+        trainForm: this.trainForm.value,
+      }
+    });
     
-    const data = {
-      from_city: this.trainForm.get('from_city')!.value,
-      to_city: this.trainForm.get('to_city')!.value,
-      date_of_journey: date_of_journey,
-      seat_class: this.trainForm.get('seat_class')!.value,
-    };
 
-    const value = this._apiService.searchSeat(data);
-    console.log('value', value);
   }
 
 }

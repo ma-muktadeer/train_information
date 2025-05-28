@@ -2,7 +2,7 @@ import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
   isMainModule,
-  writeResponseToNodeResponse,
+  writeResponseToNodeResponse
 } from '@angular/ssr/node';
 import axios from 'axios'; // ✅ HTTP অনুরোধের জন্য
 import bodyParser from 'body-parser'; // ✅ JSON body read করার জন্য
@@ -84,6 +84,10 @@ if (isMainModule(import.meta.url)) {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
+// const port = process.env['PORT'] || 4000;
+// app.listen(port, () => {
+//   console.log(`✅ SSR Server is running at http://localhost:${port}`);
+// });
 
 /**
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.

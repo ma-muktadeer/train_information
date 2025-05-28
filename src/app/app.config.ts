@@ -2,8 +2,8 @@ import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@
 import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideClientHydration, withEventReplay, withHttpTransferCacheOptions } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ApiService } from '../services/api.service';
@@ -58,11 +58,15 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideAnimations(),
-    provideNativeDateAdapter(),
-    // { provide: MAT_DATE_LOCALE, useValue: 'en-BN' },
+    // provideNativeDateAdapter(),
+    // // { provide: MAT_DATE_LOCALE, useValue: 'en-BN' },
+    // { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
+    // { provide: DateAdapter, useClass: LuxonDateAdapter },
+    // // provideLuxonDateAdapter(),
+    // { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
+
+     provideLuxonDateAdapter(),
     { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
-    { provide: DateAdapter, useClass: LuxonDateAdapter },
-    // provideLuxonDateAdapter(),
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
 
     StationsService,

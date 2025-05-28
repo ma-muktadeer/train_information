@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { Station } from '../interfaces/Station';
+import { TrainResponse } from '../interfaces/train-details';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private readonly _http = inject(HttpClient);
-  private readonly _baseUrl = 'https://railspaapi.shohoz.com/v1.0';
+  private readonly _baseUrl = '/api/v1.0';
 
   constructor() { }
 
@@ -36,24 +37,15 @@ export class ApiService {
     return name.replace(/'/g, '');
   }
 
-  searchSeat(data: any) {
+  async searchSeat(data: any): Promise<TrainResponse> {
     const pathExtension = 'web/bookings/search-trips-v2';
     return this._getRequestValue(data, pathExtension);
   }
 
-  private _getRequestValue(data: any, pathExtension: string) {
+  private async _getRequestValue(data: any, pathExtension: string): Promise<TrainResponse> {
     const url = `${this._baseUrl}/${pathExtension}`;
     console.log('Request URL:', url);
     console.log('Request Data:', data);
-    return this._http.get<any>('/api/shohoz/search-trips', {params:data}).subscribe({
-      next: (response) => {
-        console.log('Response:', response);
-        return response;
-      },
-      error: (error) => {
-        console.error('Error:', error);
-        throw error;
-      }
-    });
+    return lastValueFrom(this._http.get<any>(url, { params: data }));
   }
 }
