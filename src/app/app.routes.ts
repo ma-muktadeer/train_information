@@ -17,7 +17,7 @@ export const routes: Routes = [
         // For prerendering (static routes)
         ...(typeof ngDevMode === 'undefined' || ngDevMode ? {} : {
             data: {
-                revalidate: 3600 
+                revalidate: 3600
             }
         })
 
@@ -35,10 +35,12 @@ export const routes: Routes = [
         resolve: { seo: seoResolver },
         ...(typeof ngDevMode === 'undefined' || ngDevMode ? {} : {
             data: {
-                revalidate: 3600 
+                revalidate: 3600
             }
         })
     },
-
+    {
+        path: '**', redirectTo: 'train-matrix', pathMatch: 'full'
+    }
 
 ];
