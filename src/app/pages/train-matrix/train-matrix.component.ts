@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { bounceInUpOnEnterAnimation, fadeInOnEnterAnimation, fadeInUpOnEnterAnimation, slideInLeftOnEnterAnimation } from 'angular-animations';
 import { map, Observable, startWith } from 'rxjs';
 import { Station } from '../../../interfaces/Station';
 import { StationsService } from '../../../services/stations.service';
@@ -35,7 +36,15 @@ import { StationsService } from '../../../services/stations.service';
     AsyncPipe,
   ],
   templateUrl: './train-matrix.component.html',
-  styleUrl: './train-matrix.component.scss'
+  styleUrl: './train-matrix.component.scss',
+  animations:[
+    
+    slideInLeftOnEnterAnimation({anchor:'left', delay:100}),
+   slideInLeftOnEnterAnimation({ anchor: 'titleAnim', duration: 800 }),
+    fadeInUpOnEnterAnimation({ anchor: 'formAnim', duration: 600, delay: 200 }),
+    bounceInUpOnEnterAnimation({ anchor: 'btnAnim', delay: 600 }),
+    fadeInOnEnterAnimation({ anchor: 'footerAnim', delay: 1000 })
+  ]
 })
 export class TrainMatrixComponent {
 

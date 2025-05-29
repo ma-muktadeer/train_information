@@ -3,9 +3,9 @@
 </div> -->
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
 
-    <div class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
+    <div [@left] class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
 
-        <div class="flex items-center justify-between mb-8">
+        <div  class="flex items-center justify-between mb-8">
             <div class="flex items-center space-x-3">
                 <span class="material-icons text-gray-700 text-4xl">train</span>
                 <h1 class="text-gray-800 text-2xl font-semibold">BR Train Seat Matrix</h1>
@@ -14,7 +14,7 @@
                 BETA
             </span>
         </div>
-        <form [formGroup]="trainForm">
+        <form [@formAnim] [formGroup]="trainForm">
 
             <div class="mb-6">
                 <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
@@ -87,7 +87,7 @@
                 </mat-form-field>
             </div>
 
-            <button mat-raised-button type="submit" [disabled]="trainForm.invalid"
+            <button [@btnAnim] mat-raised-button type="submit" [disabled]="trainForm.invalid"
                (click)="search()" class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
                <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
                 Search Trains
@@ -95,7 +95,7 @@
 
         </form>
 
-        <p class="text-center text-gray-700 text-sm mb-8">
+        <p [@footerAnim] class="text-center text-gray-700 text-sm mb-8">
             This project is open source. Check it out on
             <a href="https://github.com" target="_blank" rel="noopener noreferrer"
                 class="text-green-600 hover:underline font-medium">
@@ -104,7 +104,7 @@
             .
         </p>
 
-        <div
+        <div [@footerAnim]
             class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg">
             <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
                 <span class="material-icons text-base">event_available</span>

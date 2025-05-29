@@ -5,12 +5,12 @@
         <mat-expansion-panel class="border-train rounded-lg shadow-sm train-details-bg"
             (opened)="setOpenAccordion(true)" (closed)="setOpenAccordion(false)">
             <mat-expansion-panel-header class=" train-details-head-bg">
-            <mat-panel-title>
-                Personal Data
-            </mat-panel-title>
-            <mat-panel-description>
-                Type your name and age {{isOpenAccordion()}}
-            </mat-panel-description>
+                <mat-panel-title>
+                    Personal Data
+                </mat-panel-title>
+                <mat-panel-description>
+                    Type your name and age {{isOpenAccordion()}}
+                </mat-panel-description>
             </mat-expansion-panel-header>
 
             <div>
@@ -22,7 +22,7 @@
             </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel >
+        <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Self-Aware Panel
