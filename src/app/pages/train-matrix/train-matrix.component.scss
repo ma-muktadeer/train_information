@@ -53,3 +53,10 @@
     background-color: #15803D;
     /* Darker green on hover */
 }
+
+.bold-icon {
+    svg {
+        background-color: #15803D;
+        filter: drop-shadow(0 0 0 black) !important;
+    }
+}

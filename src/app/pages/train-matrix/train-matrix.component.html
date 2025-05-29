@@ -7,8 +7,8 @@
 
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center space-x-3">
-                <span class="material-icons text-gray-700 text-4xl">train</span>
-                <h1 class="text-gray-800 text-2xl font-semibold">BR Train Seat Matrix</h1>
+                <i class="fas fa-subway text-[rgb(0,103,71)] text-4xl"></i>
+                <h1 class=" text-2xl font-bold" style="color: rgb(0, 103, 71);">BR Train Seat Matrix</h1>
             </div>
             <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
                 BETA
@@ -19,7 +19,7 @@
             <div class="mb-6">
                 <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
                     <mat-label>Origin Station</mat-label>
-                    <mat-icon matPrefix class="text-gray-400" [svgIcon]="iconName"></mat-icon>
+                    <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
                     <input type="text" placeholder="Pick one" aria-label="Origin Station" matInput
                         formControlName="from_city" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
@@ -37,7 +37,7 @@
                 <!-- <p class="text-gray-700 text-sm mb-2">Destination Station</p> -->
                 <mat-form-field appearance="fill" class="w-full custom-input-group">
                     <mat-label>Destination Station</mat-label>
-                    <mat-icon matPrefix class="text-gray-400" [svgIcon]="'train_icon'"></mat-icon>
+                    <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
                     <input type="text" placeholder="Type or select a destination station" matInput
                         formControlName="to_city" [matAutocomplete]="autoDestination">
                     <mat-autocomplete #autoDestination="matAutocomplete">
@@ -55,12 +55,10 @@
                 <!-- <p class="text-gray-700 text-sm mb-2">Date of Journey</p> -->
                 <mat-form-field appearance="fill" class="w-full custom-input-group">
                     <mat-label>Date of Journey</mat-label>
-                    <mat-icon matPrefix class="text-gray-400" [svgIcon]="'calendar_icon'"></mat-icon>
+                    <mat-icon matPrefix class="text-gray-400 input-icon fas fa-calendar-alt"></mat-icon>
                     <input matInput [matDatepicker]="picker" formControlName="date_of_journey" (click)="picker.open()"
                         readonly [max]="max" [min]="min">
-                    <!-- <input matInput [matDatepicker]="picker" formControlName="date_of_journey" (click)="picker.open()"
-                        readonly> -->
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
                     <mat-datepicker #picker panelClass="custom-calendar"></mat-datepicker>
                     @if (trainForm.get('date_of_journey')?.hasError('required') &&
                     trainForm.get('date_of_journey')?.touched) {
@@ -72,6 +70,7 @@
             <div class="mb-6">
                 <!-- <p class="text-gray-700 text-sm mb-2">Seat Class</p> -->
                 <mat-form-field appearance="fill" class="w-full custom-input-group">
+                    <mat-icon matPrefix class="text-gray-400 input-icon fas fas fa-chair"></mat-icon>
                     <mat-label>Seat Class</mat-label>
                     <mat-select formControlName="seat_class">
                         <mat-option value="SUVON">SUVON</mat-option>
@@ -87,9 +86,9 @@
                 </mat-form-field>
             </div>
 
-            <button [@btnAnim] mat-raised-button type="submit" [disabled]="trainForm.invalid"
-               (click)="search()" class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
-               <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
+            <button [@btnAnim] mat-raised-button type="submit" [disabled]="trainForm.invalid" (click)="search()"
+                class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
+                <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
                 Search Trains
             </button>
 

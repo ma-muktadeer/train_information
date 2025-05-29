@@ -10,10 +10,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  // config = inject(APP_CONFIG);
   title = 'train_information';
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
    this.setMatIcons();
+  //  console.log(this.config);
+   
   }
 
   ngOnInit() {

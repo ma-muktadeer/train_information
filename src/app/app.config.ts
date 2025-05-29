@@ -10,6 +10,7 @@ import { ApiService } from '../services/api.service';
 import { SeoService } from '../services/SeoService';
 import { StationsService } from '../services/stations.service';
 import { routes } from './app.routes';
+import { APP_CONFIG, appConfigValue } from './config/app-config';
 
 // Define your custom date format
 const CUSTOM_DATE_FORMATS = {
@@ -68,6 +69,7 @@ export const appConfig: ApplicationConfig = {
      provideLuxonDateAdapter(),
     { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
+    { provide: APP_CONFIG, useValue: appConfigValue },
 
     StationsService,
     ApiService,
