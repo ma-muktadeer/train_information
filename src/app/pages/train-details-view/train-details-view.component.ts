@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TrainResponse } from '../../../interfaces/train-details';
@@ -10,11 +11,27 @@ import { TrainTableDetailsComponent } from "../train-table-details/train-table-d
   styleUrl: './train-details-view.component.scss'
 })
 export class TrainDetailsViewComponent {
-  @Input({required: true}) trainDetails= signal<TrainResponse>(null);
+
+  @Input({ required: true }) trainDetails = signal<TrainResponse>(null);
+  @Input({ required: true }) serchigValue = signal<any>(null);
   panelOpenState: boolean = false;
-  isOpenAccordion= signal<boolean>(false);
-  
-  setOpenAccordion(bol: boolean) {
-    this.isOpenAccordion.update(()=>bol);
+  isOpendTrainName = signal<string>(null);
+
+  constructor(readonly _location: Location) {
+
+  }
+
+  ngOnInit() {
+    console.log(this.trainDetails());
+
+  }
+  setOpenAccordion(trainName: string) {
+    this.isOpendTrainName.update(() => trainName);
+  }
+
+  back() {
+    console.log('click to back');
+
+    this._location.back()
   }
 }

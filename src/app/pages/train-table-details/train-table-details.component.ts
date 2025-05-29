@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 
@@ -10,6 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class TrainTableDetailsComponent {
   @Input({ required: true }) trainInfo!: any;
+  @Input({ required: true }) serchigValue = signal<any>(null);
+  @Input({ required: true }) isOpenComponent = signal<string>(null);
 
   displayedColumns = ['fromTo', 'Parbatipur', 'Fulbari', 'BiramPur', 'Joypurhat', 'Joypurhat1', 'Joypurhat2', 'Joypurhat3', 'Akkelpur', 'Santahar', 'Ahsanganj', 'Natore', 'Muladuli', 'Ibrahimabad'];
   dataSource = [

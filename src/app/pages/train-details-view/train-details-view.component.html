@@ -3,9 +3,10 @@
 
     @if(trainDetails()){
     <mat-accordion multi="true">
+        @if (trainDetails().data.trains.length ) {
         @for(trainInfo of trainDetails().data.trains; track trainInfo){
-            <mat-expansion-panel class="border-train rounded-lg shadow-sm train-details-bg"
-            (opened)="setOpenAccordion(true)" (closed)="setOpenAccordion(false)">
+        <mat-expansion-panel class="border-train rounded-lg shadow-sm train-details-bg"
+            (opened)="setOpenAccordion(trainInfo.trip_number)" (closed)="setOpenAccordion(trainInfo.trip_number)">
             <mat-expansion-panel-header class=" train-details-head-bg">
                 <mat-panel-title>
                     {{trainInfo.trip_number}}
@@ -14,16 +15,34 @@
                     {{trainInfo.origin_city_name}}-{{trainInfo.destination_city_name}}
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            
+
             <div>
-                <app-train-table-details [trainInfo]="trainInfo"></app-train-table-details>
+                <app-train-table-details [trainInfo]="trainInfo" [serchigValue]="serchigValue"
+                    [isOpenComponent]="isOpendTrainName"></app-train-table-details>
             </div>
-            
+
             <mat-action-row>
                 <button mat-button color="primary">Save</button>
             </mat-action-row>
         </mat-expansion-panel>
-    }
+        }
+        }@else {
+        <div class="flex flex-col items-center justify-center min-h-[300px] bg-gray-50 rounded-lg shadow-md p-6 m-4">
+            <svg class="h-20 w-20 text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Train Information Found</h2>
+            <p class="text-gray-600 text-center">
+                We couldn't find any train details matching your search criteria.
+            </p>
+            <button (click)="back()"
+                class="mt-6 px-6 py-3 btn-primary text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Try Another Search
+            </button>
+        </div>
+        }
 
         <!-- <mat-expansion-panel>
             <mat-expansion-panel-header>
