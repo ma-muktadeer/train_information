@@ -1,5 +1,4 @@
 <div>
-    <!-- <div class="flex items-center space-x-3 w-full"> -->
 
     @if(trainDetails()){
     <mat-accordion multi="true">
@@ -16,7 +15,7 @@
                 </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <div>
+            <div class="my-3">
                 <app-train-table-details [trainInfo]="trainInfo" [serchigValue]="serchigValue"
                     [isOpenComponent]="isOpendTrainName"></app-train-table-details>
             </div>

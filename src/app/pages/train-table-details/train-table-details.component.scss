@@ -28,3 +28,19 @@ thead{
 .td-p-0{
     padding: 0px !important;
 }
+
+.border-train{
+    border: 1px solid #006747;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.train-details-bg{
+   background: linear-gradient(to bottom, #f2f6fa, #ffffff);
+}
+.train-details-head-bg{
+   background: linear-gradient(to top, #f2f6fa, #ffffff);
+   &:hover{
+    background-color: #00573b57 !important;
+   }
+}

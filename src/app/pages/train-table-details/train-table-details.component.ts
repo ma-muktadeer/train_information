@@ -1,10 +1,11 @@
 import { Component, Input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-train-table-details',
-  imports: [MatTableModule, MatButtonModule],
+  imports: [MatTableModule, MatButtonModule, MatExpansionModule],
   templateUrl: './train-table-details.component.html',
   styleUrl: './train-table-details.component.scss'
 })
