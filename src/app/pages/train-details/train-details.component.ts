@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
 import { map, Observable, startWith } from 'rxjs';
 import { Station } from '../../../interfaces/Station';
+import { TrainResponse } from '../../../interfaces/train-details';
 import { ApiService } from '../../../services/api.service';
 import { StationsService } from '../../../services/stations.service';
 import { TrainDetailsViewComponent } from '../train-details-view/train-details-view.component';
@@ -32,6 +33,7 @@ export class TrainDetailsComponent {
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
   searchData = signal<any>({});
+  trainDetailsData= signal<TrainResponse>(null);
 
   constructor(
     private readonly _apiService: ApiService,
@@ -93,6 +95,7 @@ export class TrainDetailsComponent {
         const value = await this._apiService.searchSeat(data);
         console.log('value', value);
         // এখান থেকে data UI তে পাঠান
+        this.trainDetailsData.update(()=>value);
       } catch (error) {
         console.error('API Error:', error);
         // ইউজারকে কিছু দেখান যেমন:
