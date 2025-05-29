@@ -15,8 +15,9 @@ export class TrainDetailsViewComponent {
   @Input({ required: true }) trainDetails = signal<TrainResponse>(null);
   @Input({ required: true }) serchigValue = signal<any>(null);
   panelOpenState: boolean = false;
-  isOpendTrainName = signal<string>(null);
-
+  // isOpendTrainName = signal<string>(null);
+  isOpendTrainName: string;
+  
   constructor(readonly _location: Location) {
 
   }
@@ -26,7 +27,8 @@ export class TrainDetailsViewComponent {
 
   }
   setOpenAccordion(trainName: string) {
-    this.isOpendTrainName.update(() => trainName);
+    this.isOpendTrainName = trainName;
+    // this.isOpendTrainName.update(() => trainName);
   }
 
   back() {
