@@ -37,10 +37,9 @@ import { StationsService } from '../../../services/stations.service';
   ],
   templateUrl: './train-matrix.component.html',
   styleUrl: './train-matrix.component.scss',
-  animations:[
-    
-    slideInLeftOnEnterAnimation({anchor:'left', delay:100}),
-   slideInLeftOnEnterAnimation({ anchor: 'titleAnim', duration: 800 }),
+  animations: [
+    slideInLeftOnEnterAnimation({ anchor: 'left', delay: 100 }),
+    slideInLeftOnEnterAnimation({ anchor: 'titleAnim', duration: 800 }),
     fadeInUpOnEnterAnimation({ anchor: 'formAnim', duration: 600, delay: 200 }),
     bounceInUpOnEnterAnimation({ anchor: 'btnAnim', delay: 600 }),
     fadeInOnEnterAnimation({ anchor: 'footerAnim', delay: 1000 })
@@ -63,7 +62,7 @@ export class TrainMatrixComponent {
 
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
-  constructor(private readonly _router: Router, 
+  constructor(private readonly _router: Router,
     private snack: MatSnackBar) {
     this.getStations();
   }
@@ -92,7 +91,7 @@ export class TrainMatrixComponent {
   async search() {
 
     if (this.trainForm.invalid) {
-      this.snack.open('অনুগ্রহ করে সব ফিল্ড পূরণ করুন।','বন্ধ করুন', {
+      this.snack.open('অনুগ্রহ করে সব ফিল্ড পূরণ করুন।', 'বন্ধ করুন', {
         duration: 3000,
         panelClass: ['mat-toolbar', 'mat-warn'],
       });
@@ -103,7 +102,7 @@ export class TrainMatrixComponent {
         trainForm: this.trainForm.value,
       }
     });
-    
+
 
   }
 
