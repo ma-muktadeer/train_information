@@ -1,0 +1,30 @@
+.mat-row-custom:nth-child(even) {
+  background-color: #00674607; 
+}
+thead{
+    tr{
+        th{
+            background-color: #006747 !important;
+        }
+    }
+}
+
+.table-head-color{
+    background-color: #006747 !important;
+    
+}
+.buy-btn{
+    background-color: #006747 !important;
+    color: white;
+    &:hover{
+        cursor: pointer;
+        background-color: #003f2b !important;
+    }
+}
+.border{
+    border-color: #cccfce;
+}
+
+.td-p-0{
+    padding: 0px !important;
+}
