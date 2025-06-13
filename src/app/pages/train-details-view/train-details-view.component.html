@@ -1,7 +1,7 @@
 <div>
 
     @if(trainDetails()){
-    <mat-accordion multi="true">
+    <mat-accordion multi="false">
         @if (trainDetails().data.trains.length ) {
         @for(trainInfo of trainDetails().data.trains; track trainInfo){
         <mat-expansion-panel class="border-train rounded-lg shadow-sm train-details-bg"
@@ -11,7 +11,7 @@
                     {{trainInfo.trip_number}}
                 </mat-panel-title>
                 <mat-panel-description>
-                    {{trainInfo.origin_city_name}}-{{trainInfo.destination_city_name}}
+                    {{trainInfo.origin_city_name}}-{{trainInfo.destination_city_name}} Time-{{trainInfo.arrival_date_time}}
                 </mat-panel-description>
             </mat-expansion-panel-header>
 
