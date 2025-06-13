@@ -53,12 +53,25 @@ export class TrainDetailsViewComponent {
       )
     );
 
+    // const params = new URLSearchParams({
+    //   from: "Natore",
+    //   to: "Dhaka",
+    //   date: "23-Jun-2025",
+    //   seat_class: "S_CHAIR"
+    // });
+
+    // fetch(`https://your-api-url?${params.toString()}`)
+    //   .then(response => response.json())
+    //   .then(data => console.log(data))
+    //   .catch(error => console.error("Error fetching data:", error));
+
     return Promise.all(requests)
       .then(responses => Promise.all(responses.map(res => res.json())))
       .then(data => console.log('Train Data:', data))
       .catch(error => console.error('Error fetching train data:', error));
-  }
 
+
+  }
 
 
 }
