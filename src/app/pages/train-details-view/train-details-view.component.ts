@@ -46,7 +46,7 @@ export class TrainDetailsViewComponent {
     [{ from_city: 'Nilphamari', to_city: 'Saidpur' }]
   ];
 
-  fetchTrainData() {
+  async fetchTrainData() {
     const requests = this.stations.flatMap(group =>
       group.map(station =>
         fetch(`${this.apiUrl}?from=${station.from_city}&to=${station.to_city}`)
@@ -65,12 +65,13 @@ export class TrainDetailsViewComponent {
     //   .then(data => console.log(data))
     //   .catch(error => console.error("Error fetching data:", error));
 
-    return Promise.all(requests)
-      .then(responses => Promise.all(responses.map(res => res.json())))
-      .then(data => console.log('Train Data:', data))
-      .catch(error => console.error('Error fetching train data:', error));
-
-
+    try {
+      const responses = await Promise.all(requests);
+      const data = await Promise.all(responses.map(res => res.json()));
+      return console.log('Train Data:', data);
+    } catch (error) {
+      return console.error('Error fetching train data:', error);
+    }
   }
 
 
