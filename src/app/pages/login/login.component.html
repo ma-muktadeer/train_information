@@ -1,1 +1,45 @@
-<p>login works!</p>
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title class="login-title">লগইন করুন</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>ইমেইল</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            ইমেইল আবশ্যক
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            সঠিক ইমেইল দিন
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>পাসওয়ার্ড</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            পাসওয়ার্ড আবশ্যক
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="!loginForm.valid">
+          লগইন
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions class="login-actions">
+      <button mat-button color="accent">পাসওয়ার্ড ভুলে গেছেন?</button>
+      <button mat-button color="primary" routerLink="/register">অ্যাকাউন্ট তৈরি করুন</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
