@@ -1,119 +1,118 @@
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+  <div [@left] class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
 
-    <div [@left] class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
-
-        <div class="flex items-center justify-between mb-8">
-            <div class="flex items-center space-x-3">
-                <i class="fas fa-subway text-[rgb(0,103,71)] text-4xl"></i>
-                <h1 class=" text-2xl font-bold" style="color: rgb(0, 103, 71);">BR Train Seat Matrix</h1>
-            </div>
-            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
-                BETA
-            </span>
-        </div>
-        <form [@formAnim] [formGroup]="trainForm">
-
-            <div class="mb-6">
-                <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
-                    <mat-label>Origin Station</mat-label>
-                    <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
-                    <input type="text" placeholder="Pick one" aria-label="Origin Station" matInput
-                        formControlName="from_city" [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        @for (option of filteredFormStarions | async; track option) {
-                        <mat-option [value]="option.value">{{option.name}}</mat-option>
-                        }
-                    </mat-autocomplete>
-                    @if (trainForm.get('from_city')?.hasError('required') && trainForm.get('from_city')?.touched) {
-                    <mat-error>Destination station is required</mat-error>
-                    }
-                </mat-form-field>
-            </div>
-
-            <div class="mb-6">
-                <!-- <p class="text-gray-700 text-sm mb-2">Destination Station</p> -->
-                <mat-form-field appearance="fill" class="w-full custom-input-group">
-                    <mat-label>Destination Station</mat-label>
-                    <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
-                    <input type="text" placeholder="Type or select a destination station" matInput
-                        formControlName="to_city" [matAutocomplete]="autoDestination">
-                    <mat-autocomplete #autoDestination="matAutocomplete">
-                        @for (option of filteredDestinationStations | async; track option) {
-                        <mat-option [value]="option.value">{{option.name}}</mat-option>
-                        }
-                    </mat-autocomplete>
-                    @if (trainForm.get('to_city')?.hasError('required') && trainForm.get('to_city')?.touched) {
-                    <mat-error>Destination station is required</mat-error>
-                    }
-                </mat-form-field>
-            </div>
-
-            <div class="mb-6">
-                <!-- <p class="text-gray-700 text-sm mb-2">Date of Journey</p> -->
-                <mat-form-field appearance="fill" class="w-full custom-input-group">
-                    <mat-label>Date of Journey</mat-label>
-                    <mat-icon matPrefix class="text-gray-400 input-icon fas fa-calendar-alt"></mat-icon>
-                    <input matInput [matDatepicker]="picker" formControlName="date_of_journey" (click)="picker.open()"
-                        readonly [max]="max" [min]="min">
-                    <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
-                    <mat-datepicker #picker panelClass="custom-calendar"></mat-datepicker>
-                    @if (trainForm.get('date_of_journey')?.hasError('required') &&
-                    trainForm.get('date_of_journey')?.touched) {
-                    <mat-error>Date of journey is required</mat-error>
-                    }
-                </mat-form-field>
-            </div>
-
-            <div class="mb-6">
-                <!-- <p class="text-gray-700 text-sm mb-2">Seat Class</p> -->
-                <mat-form-field appearance="fill" class="w-full custom-input-group">
-                    <mat-icon matPrefix class="text-gray-400 input-icon fas fas fa-chair"></mat-icon>
-                    <mat-label>Seat Class</mat-label>
-                    <mat-select formControlName="seat_class">
-                        <mat-option value="SUVON">SUVON</mat-option>
-                        <mat-option value="SHOVON">SHOVON</mat-option>
-                        <mat-option value="SNIGDHA">SNIGDHA</mat-option>
-                        <mat-option value="AC_BERTH">AC_BERTH</mat-option>
-                        <mat-option value="AC_CHAIR">AC_CHAIR</mat-option>
-                        <mat-option value="S_CHAIR">S_CHAIR</mat-option>
-                    </mat-select>
-                    @if (trainForm.get('seat_class')?.hasError('required') && trainForm.get('seat_class')?.touched) {
-                    <mat-error>Seat class is required</mat-error>
-                    }
-                </mat-form-field>
-            </div>
-
-            <button [@btnAnim] mat-raised-button type="submit" [disabled]="trainForm.invalid" (click)="search()"
-                class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
-                <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
-                Search Trains
-            </button>
-
-        </form>
-
-        <p [@footerAnim] class="text-center text-gray-700 text-sm mb-8">
-            This project is open source. Check it out on
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-                class="text-green-600 hover:underline font-medium">
-                GitHub
-            </a>
-            .
-        </p>
-
-        <div [@footerAnim]
-            class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg">
-            <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
-                <span class="material-icons text-base">event_available</span>
-                <span class="text-sm">Seat Availability</span>
-            </a>
-            <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
-                <span class="material-icons text-base">attach_money</span>
-                <span class="text-sm">Train Fare</span>
-            </a>
-            <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
-                <span class="material-icons text-base">feedback</span>
-                <span class="text-sm">Feedback</span>
-            </a>
-        </div>
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-subway text-[rgb(0,103,71)] text-4xl"></i>
+        <h1 class=" text-2xl font-bold" style="color: rgb(0, 103, 71);">BR Train Seat Matrix</h1>
+      </div>
+      <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+        BETA
+      </span>
     </div>
+    <form [@formAnim] [formGroup]="trainForm">
+
+      <div class="mb-6">
+        <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
+          <mat-label>Origin Station</mat-label>
+          <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
+          <input type="text" placeholder="Pick one" aria-label="Origin Station" matInput formControlName="from_city"
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            @for (option of filteredFormStarions | async; track option) {
+            <mat-option [value]="option.value">{{option.name}}</mat-option>
+            }
+          </mat-autocomplete>
+          @if (trainForm.get('from_city')?.hasError('required') && trainForm.get('from_city')?.touched) {
+          <mat-error>Destination station is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="mb-6">
+        <!-- <p class="text-gray-700 text-sm mb-2">Destination Station</p> -->
+        <mat-form-field appearance="fill" class="w-full custom-input-group">
+          <mat-label>Destination Station</mat-label>
+          <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
+          <input type="text" placeholder="Type or select a destination station" matInput formControlName="to_city"
+            [matAutocomplete]="autoDestination">
+          <mat-autocomplete #autoDestination="matAutocomplete">
+            @for (option of filteredDestinationStations | async; track option) {
+            <mat-option [value]="option.value">{{option.name}}</mat-option>
+            }
+          </mat-autocomplete>
+          @if (trainForm.get('to_city')?.hasError('required') && trainForm.get('to_city')?.touched) {
+          <mat-error>Destination station is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="mb-6">
+        <!-- <p class="text-gray-700 text-sm mb-2">Date of Journey</p> -->
+        <mat-form-field appearance="fill" class="w-full custom-input-group">
+          <mat-label>Date of Journey</mat-label>
+          <mat-icon matPrefix class="text-gray-400 input-icon fas fa-calendar-alt"></mat-icon>
+          <input matInput [matDatepicker]="picker" formControlName="date_of_journey" (click)="picker.open()" readonly
+            [max]="max" [min]="min">
+          <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+          <mat-datepicker #picker panelClass="custom-calendar"></mat-datepicker>
+          @if (trainForm.get('date_of_journey')?.hasError('required') &&
+          trainForm.get('date_of_journey')?.touched) {
+          <mat-error>Date of journey is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="mb-6">
+        <!-- <p class="text-gray-700 text-sm mb-2">Seat Class</p> -->
+        <mat-form-field appearance="fill" class="w-full custom-input-group">
+          <mat-icon matPrefix class="text-gray-400 input-icon fas fas fa-chair"></mat-icon>
+          <mat-label>Seat Class</mat-label>
+          <mat-select formControlName="seat_class">
+            <mat-option value="SUVON">SUVON</mat-option>
+            <mat-option value="SHOVON">SHOVON</mat-option>
+            <mat-option value="SNIGDHA">SNIGDHA</mat-option>
+            <mat-option value="AC_BERTH">AC_BERTH</mat-option>
+            <mat-option value="AC_CHAIR">AC_CHAIR</mat-option>
+            <mat-option value="S_CHAIR">S_CHAIR</mat-option>
+          </mat-select>
+          @if (trainForm.get('seat_class')?.hasError('required') && trainForm.get('seat_class')?.touched) {
+          <mat-error>Seat class is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <button [@btnAnim] mat-raised-button type="submit" [disabled]="trainForm.invalid" (click)="search()"
+        class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
+        <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
+        Search Trains
+      </button>
+
+    </form>
+
+    <p [@footerAnim] class="text-center text-gray-700 text-sm mb-8">
+      This project is open source. Check it out on
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+        class="text-green-600 hover:underline font-medium">
+        GitHub
+      </a>
+      .
+    </p>
+
+    <div [@footerAnim]
+      class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg">
+      <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
+        <span class="material-icons text-base">event_available</span>
+        <span class="text-sm">Seat Availability</span>
+      </a>
+      <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
+        <span class="material-icons text-base">attach_money</span>
+        <span class="text-sm">Train Fare</span>
+      </a>
+      <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
+        <span class="material-icons text-base">feedback</span>
+        <span class="text-sm">Feedback</span>
+      </a>
+    </div>
+  </div>
 </div>
