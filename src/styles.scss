@@ -8,3 +8,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .input-icon{
     color: rgb(0,103,71) !important;
 }
+
+mat-form-field.mat-form-field-invalid{
+  .mdc-text-field{
+    background: #ffcbcb !important;
+
+  }
+}
+/* when field is invalid and touched, make the outline/border red */
+// .mat-mdc-form-field.mat-mdc-form-field--invalid .mdc-notched-outline__notch {
+//   border-color: #dc2626 !important; /* tailwind's red-600 */
+// }
+
+// /* for fill style, change underline instead */
+// .mat-mdc-form-field.mat-mdc-form-field--invalid .mdc-line-ripple {
+//   background-color: #dc2626 !important;
+// }
