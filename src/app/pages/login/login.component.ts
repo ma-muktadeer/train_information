@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -27,29 +28,36 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private readonly _apiService: ApiService
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      mobile_number: ['', [Validators.required, Validators.pattern('[0-9]{11,}')]],
       password: ['', Validators.required]
     });
   }
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
       this.isLoading = true;
-      const { email, password } = this.loginForm.value;
+      const { mobile_number, password } = this.loginForm.value;
 
       // এখানে আপনার অথেন্টিকেশন সার্ভিস কল করুন
-      console.log('Login attempt with:', { email, password });
+      console.log('Login attempt with:', { mobile_number, password });
 
       // সিমুলেটেড রেস্পন্স
-      setTimeout(() => {
-        this.isLoading = false;
-        localStorage.setItem('auth_token', 'simulated_token');
-        localStorage.setItem('user_data', JSON.stringify({ email, name: 'User' }));
+      // setTimeout(() => {
+      //   this.isLoading = false;
+      //   localStorage.setItem('auth_token', 'simulated_token');
+      //   localStorage.setItem('user_data', JSON.stringify({ mobile_number, name: 'User' }));
 
-        this.snackBar.open('লগইন সফল!', 'ঠিক আছে', { duration: 3000 });
-        this.router.navigate(['/dashboard']);
-      }, 1500);
+      //   this.snackBar.open('লগইন সফল!', 'ঠিক আছে', { duration: 3000 });
+      //   this.router.navigate(['/dashboard']);
+      // }, 1500);
+
+      const res = await this._apiService.login({mobile_number, password});
+
+      console.log('getting login response', res);
+
     }
   }
 }

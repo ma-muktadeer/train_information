@@ -1,49 +1,3 @@
-<!-- <div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title class="login-title">লগইন করুন</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>ইমেইল</mat-label>
-          <input matInput formControlName="email" required>
-          <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-            ইমেইল আবশ্যক
-          </mat-error>
-          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-            সঠিক ইমেইল দিন
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>পাসওয়ার্ড</mat-label>
-          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
-          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-            পাসওয়ার্ড আবশ্যক
-          </mat-error>
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="!loginForm.valid">
-          লগইন
-        </button>
-      </form>
-    </mat-card-content>
-
-    <mat-divider></mat-divider>
-
-    <mat-card-actions class="login-actions">
-      <button mat-button color="accent">পাসওয়ার্ড ভুলে গেছেন?</button>
-      <button mat-button color="primary" routerLink="/register">অ্যাকাউন্ট তৈরি করুন</button>
-    </mat-card-actions>
-  </mat-card>
-</div> -->
-
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
   <div class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
 
@@ -60,12 +14,15 @@
 
 
       <div class="mb-6">
-        <mat-form-field appearance="fill"  class="example-full-width p-0 custom-input-group">
-          <mat-label>Login Name</mat-label>
-          <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
-          <input matInput placeholder="Login" formControlName="email" required />
-          @if (loginForm.get('email')?.hasError('required') || loginForm.get('email')?.touched) {
-          <mat-error class="error-message">Please select origin station</mat-error>
+        <mat-form-field appearance="fill" class="example-full-width p-0 custom-input-group">
+          <mat-label>Mobile Number</mat-label>
+          <mat-icon matPrefix class="text-gray-400 fa-solid fa-mobile-screen input-icon"></mat-icon>
+          <input matInput placeholder="Login" formControlName="mobile_number" required />
+          @if (loginForm.get('mobile_number')?.hasError('required') && loginForm.get('mobile_number')?.touched) {
+          <mat-error class="error-message">Please Enter Uour Login Mobile Number</mat-error>
+          }
+          @if (loginForm.get('mobile_number')?.hasError('pattern') && loginForm.get('mobile_number')?.touched) {
+          <mat-error class="error-message">Please Enter Your Valid Mobile Number</mat-error>
           }
         </mat-form-field>
       </div>
