@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { catchError, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Station } from '../interfaces/Station';
 import { TrainResponse } from '../interfaces/train-details';
 import { ITrainResponse } from '../interfaces/train-routs';
@@ -16,17 +16,22 @@ export class ApiService {
   constructor() { }
 
 
-// url = f"https://railspaapi.shohoz.com/v1.0/web/auth/sign-in"
-//     payload = {"mobile_number": mobile_number, "password": password}
+  // url = f"https://railspaapi.shohoz.com/v1.0/web/auth/sign-in"
+  //     payload = {"mobile_number": mobile_number, "password": password}
 
-async login(payload : {mobile_number: string, password: string}): Promise<string>{
+  async login(payload: { mobile_number: string, password: string }): Promise<string> {
 
-  const loginUri = '/api/v1.0/web/auth/sign-in';
-  console.log('try to login ', payload);
+    const loginUri = '/api/v1.0/web/auth/sign-in';
+    console.log('try to login ', payload);
 
-return this._fatchToken(loginUri, payload);
+    try {
+      const token = await this._fetchToken(loginUri, payload);
+      return token;
+    } catch (error) {
+      throw this._handleLoginError(error);
+    }
 
-}
+  }
 
   async getStations(): Promise<Station[]> {
 
@@ -54,17 +59,25 @@ return this._fatchToken(loginUri, payload);
 
   async searchSeat(data: any): Promise<TrainResponse> {
     const pathExtension = '/api/v1.0/web/bookings/search-trips-v2';
-    return this._getRequestValue(data, pathExtension);
+    try {
+      return this._getRequestValue(data, pathExtension);
+    } catch (error) {
+      throw this._handleLoginError(error);
+    }
   }
 
   async findTrainRouts(data: { departure_date_time: any; model: string; }): Promise<ITrainResponse> {
     debugger
     const pathExtension = '/api/v1.0/web/train-routes';
-    return this._postRequestValue(JSON.stringify(data), pathExtension);
+    try {
+      return this._postRequestValue(JSON.stringify(data), pathExtension);
+    } catch (error) {
+      throw this._handleLoginError(error);
+    }
   }
 
   private async _postRequestValue(data: string, pathExtension: string): Promise<ITrainResponse> {
-     const url = `${pathExtension}`;
+    const url = `${pathExtension}`;
     console.log('Request URL:', url);
     console.log('Request Data:', data);
     const options = {
@@ -72,7 +85,12 @@ return this._fatchToken(loginUri, payload);
       observe: 'response' as const
     };
 
-    return lastValueFrom(this._http.post<ITrainResponse>(url, data, options))
+    return lastValueFrom(this._http.post<ITrainResponse>(url, data, options)
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          throw this._transformHttpError(err);
+        })
+      ))
       .then(response => {
         if (response.body) {
           return { ...response.body };
@@ -81,18 +99,52 @@ return this._fatchToken(loginUri, payload);
       });
   }
 
-   private async _fatchToken(loginUri: string, payload: { mobile_number: string; password: string; }): Promise<string> {
+  private async _fetchToken(
+    url: string,
+    payload: { mobile_number: string; password: string }
+  ): Promise<string> {
     const options = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      observe: 'response' as const,
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+
+    const response$ = this._http.post<ApiResponse>(url, payload, options)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          throw this._transformHttpError(error);
+        })
+      );
+    const response = await lastValueFrom(response$);
+    debugger
+    return response.data?.token;
+  }
+
+  private _transformHttpError(error: HttpErrorResponse): Error {
+    if (error.status === 0) {
+      // Network error (no internet, CORS, etc.)
+      return new Error('Network error. Please check your connection.');
     }
-    return lastValueFrom(this._http.post<string>(loginUri, payload, options))
-    .then(res=> {
-      if(res.body){
-        return res.body;
-      }
-      throw new Error('Empty response body');
-    });
+
+    switch (error.status) {
+      case 400:
+        return new Error(error.error?.message || 'Invalid request format.');
+      case 401:
+        return new Error(error.error?.message || 'Invalid credentials.');
+      case 403:
+        return new Error('Access denied. Contact support.');
+      case 404:
+        return new Error('API endpoint not found.');
+      case 500:
+        return new Error('Server error. Try again later.');
+      default:
+        return new Error(`Unexpected error (${error.status}).`);
+    }
+  }
+
+  private _handleLoginError(error: unknown): Error {
+    if (error instanceof Error) {
+      return error; // Already transformed
+    }
+    return new Error('Unknown login error.');
   }
 
 
@@ -100,6 +152,21 @@ return this._fatchToken(loginUri, payload);
     const url = `${pathExtension}`;
     console.log('Request URL:', url);
     console.log('Request Data:', data);
-    return lastValueFrom(this._http.get<any>(url, { params: data }));
+    return lastValueFrom(this._http.get<any>(url, { params: data })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          throw this._transformHttpError(error);
+        })
+      )
+    ).then(res => res);
   }
+}
+interface ApiResponse {
+  data: {
+    token: string;
+    nid_validated?: number;
+    message: string;
+    user?: any;
+  };
+  extra?: any;
 }
