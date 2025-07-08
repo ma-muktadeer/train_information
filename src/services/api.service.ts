@@ -15,6 +15,19 @@ export class ApiService {
 
   constructor() { }
 
+
+// url = f"https://railspaapi.shohoz.com/v1.0/web/auth/sign-in"
+//     payload = {"mobile_number": mobile_number, "password": password}
+
+async login(payload : {mobile_number: string, password: string}): Promise<string>{
+
+  const loginUri = '/api/v1.0/web/auth/sign-in';
+  console.log('try to login ', payload);
+
+return this._fatchToken(loginUri, payload);
+
+}
+
   async getStations(): Promise<Station[]> {
 
     try {
@@ -62,10 +75,24 @@ export class ApiService {
     return lastValueFrom(this._http.post<ITrainResponse>(url, data, options))
       .then(response => {
         if (response.body) {
-          return { ...response.body }; // Clone the response body
+          return { ...response.body };
         }
         throw new Error('Empty response body');
       });
+  }
+
+   private async _fatchToken(loginUri: string, payload: { mobile_number: string; password: string; }): Promise<string> {
+    const options = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      observe: 'response' as const,
+    }
+    return lastValueFrom(this._http.post<string>(loginUri, payload, options))
+    .then(res=> {
+      if(res.body){
+        return res.body;
+      }
+      throw new Error('Empty response body');
+    });
   }
 
 
