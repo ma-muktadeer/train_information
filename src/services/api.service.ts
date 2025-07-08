@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { catchError, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Station } from '../interfaces/Station';
@@ -92,9 +92,14 @@ export class ApiService {
     console.log('Request URL:', url);
     console.log('Request Data:', data);
     const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      observe: 'response' as const
+        ...this._buildSecHeader(),
+        observe: 'response' as const
     };
+
+    // const options = {
+    //   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    //   observe: 'response' as const
+    // };
 
     return lastValueFrom(this._http.post<ITrainResponse>(url, data, options)
       .pipe(
@@ -102,22 +107,19 @@ export class ApiService {
           throw this._transformHttpError(err);
         })
       ))
-      .then(response => {
+      .then((response: HttpResponse<ITrainResponse>) => {
         if (response.body) {
-          return { ...response.body };
+            return response.body;
         }
         throw new Error('Empty response body');
-      });
+    });
   }
 
   private async _fetchToken(
     url: string,
     payload: { mobile_number: string; password: string }
   ): Promise<string> {
-    const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    };
-
+    const options = this._buildHeader();
     const response$ = this._http.post<ApiResponse>(url, payload, options)
       .pipe(
         catchError((error: HttpErrorResponse) => {
@@ -129,6 +131,34 @@ export class ApiService {
     return response.data?.token;
   }
 
+  private _buildHeader(): { headers: HttpHeaders } {
+    return {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        })
+    };
+}
+
+private _buildSecHeader(): { headers: HttpHeaders } {
+    const baseHeaders = this._buildHeader();
+    const token = this._getTokenSafely();
+
+    if (token) {
+        baseHeaders.headers = baseHeaders.headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return baseHeaders;
+}
+
+  private _getTokenSafely(): string | null {
+    try {
+        return this.sessionStore?.getItem(this._token) ?? null;
+    } catch (e) {
+        console.error('Token access failed:', e);
+        return null;
+    }
+}
   private _transformHttpError(error: HttpErrorResponse): Error {
     if (error.status === 0) {
       // Network error (no internet, CORS, etc.)
@@ -163,7 +193,8 @@ export class ApiService {
     const url = `${pathExtension}`;
     console.log('Request URL:', url);
     console.log('Request Data:', data);
-    return lastValueFrom(this._http.get<any>(url, { params: data })
+    const option = this._buildSecHeader();
+    return lastValueFrom(this._http.get<any>(url, { params: data, headers: option.headers })
       .pipe(
         catchError((error: HttpErrorResponse) => {
           throw this._transformHttpError(error);
