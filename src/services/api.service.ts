@@ -1,19 +1,29 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { catchError, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Station } from '../interfaces/Station';
 import { TrainResponse } from '../interfaces/train-details';
 import { ITrainResponse } from '../interfaces/train-routs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  private readonly _token: string = 'token';
 
   private readonly _http = inject(HttpClient);
   // private readonly _baseUrl = '/api/v1.0';
+  private sessionStore: Storage;
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID)  private platformId: any) {
+    this._checkPlatform();
+   }
+  private _checkPlatform() {
+    if(isPlatformBrowser(this.platformId)){
+      this.sessionStore = window.sessionStorage;
+    }
+  }
 
 
   // url = f"https://railspaapi.shohoz.com/v1.0/web/auth/sign-in"
@@ -26,6 +36,7 @@ export class ApiService {
 
     try {
       const token = await this._fetchToken(loginUri, payload);
+      this.sessionStore.setItem(this._token, token);
       return token;
     } catch (error) {
       throw this._handleLoginError(error);
