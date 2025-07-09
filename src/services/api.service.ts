@@ -24,8 +24,6 @@ export class ApiService {
       this.sessionStore = window.sessionStorage;
     }
   }
-
-
   // url = f"https://railspaapi.shohoz.com/v1.0/web/auth/sign-in"
   //     payload = {"mobile_number": mobile_number, "password": password}
 
@@ -95,11 +93,6 @@ export class ApiService {
         ...this._buildSecHeader(),
         observe: 'response' as const
     };
-
-    // const options = {
-    //   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    //   observe: 'response' as const
-    // };
 
     return lastValueFrom(this._http.post<ITrainResponse>(url, data, options)
       .pipe(
