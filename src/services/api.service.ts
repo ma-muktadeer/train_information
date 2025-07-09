@@ -16,11 +16,12 @@ export class ApiService {
   // private readonly _baseUrl = '/api/v1.0';
   private sessionStore: Storage;
 
-  constructor(@Inject(PLATFORM_ID)  private platformId: any) {
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
     this._checkPlatform();
-   }
+  }
+
   private _checkPlatform() {
-    if(isPlatformBrowser(this.platformId)){
+    if (isPlatformBrowser(this.platformId)) {
       this.sessionStore = window.sessionStorage;
     }
   }
@@ -90,8 +91,8 @@ export class ApiService {
     console.log('Request URL:', url);
     console.log('Request Data:', data);
     const options = {
-        ...this._buildSecHeader(),
-        observe: 'response' as const
+      ...this._buildSecHeader(),
+      observe: 'response' as const
     };
 
     return lastValueFrom(this._http.post<ITrainResponse>(url, data, options)
@@ -102,10 +103,10 @@ export class ApiService {
       ))
       .then((response: HttpResponse<ITrainResponse>) => {
         if (response.body) {
-            return response.body;
+          return response.body;
         }
         throw new Error('Empty response body');
-    });
+      });
   }
 
   private async _fetchToken(
@@ -126,32 +127,32 @@ export class ApiService {
 
   private _buildHeader(): { headers: HttpHeaders } {
     return {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        })
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
     };
-}
+  }
 
-private _buildSecHeader(): { headers: HttpHeaders } {
+  private _buildSecHeader(): { headers: HttpHeaders } {
     const baseHeaders = this._buildHeader();
     const token = this._getTokenSafely();
 
     if (token) {
-        baseHeaders.headers = baseHeaders.headers.set('Authorization', `Bearer ${token}`);
+      baseHeaders.headers = baseHeaders.headers.set('Authorization', `Bearer ${token}`);
     }
 
     return baseHeaders;
-}
+  }
 
   private _getTokenSafely(): string | null {
     try {
-        return this.sessionStore?.getItem(this._token) ?? null;
+      return this.sessionStore?.getItem(this._token) ?? null;
     } catch (e) {
-        console.error('Token access failed:', e);
-        return null;
+      console.error('Token access failed:', e);
+      return null;
     }
-}
+  }
   private _transformHttpError(error: HttpErrorResponse): Error {
     if (error.status === 0) {
       // Network error (no internet, CORS, etc.)
