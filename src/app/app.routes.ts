@@ -60,7 +60,7 @@ export const routes: Routes = [
     }),
   },
   {
-    path: '**', redirectTo: 'train-matrix', pathMatch: 'full'
+    path: '**', redirectTo: 'login', pathMatch: 'full'
   }
 
 ];
