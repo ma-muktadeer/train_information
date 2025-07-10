@@ -1,5 +1,6 @@
-<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-  <div [@left] class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
+<!-- bg-gray-100 bg-white-->
+<div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+  <div [@left] class="w-full bg-white max-w-xl mx-auto p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg">
 
     <div class="flex items-center justify-between mb-8">
       <div class="flex items-center space-x-3">
@@ -13,7 +14,7 @@
     <form [@formAnim] [formGroup]="trainForm">
 
       <div class="mb-6">
-        <mat-form-field class="example-full-width p-0 custom-input-group" appearance="fill">
+        <mat-form-field class="example-full-width w-full p-0 custom-input-group" appearance="fill">
           <mat-label>Origin Station</mat-label>
           <mat-icon matPrefix class="text-gray-400 fas fa-train input-icon"></mat-icon>
           <input type="text" placeholder="Pick one" aria-label="Origin Station" matInput formControlName="from_city"

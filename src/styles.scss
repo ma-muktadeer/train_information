@@ -1,16 +1,25 @@
 // /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
-@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@use "tailwindcss";
+@use "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use "styles/material-theme.scss";
 
-.input-icon{
-    color: rgb(0,103,71) !important;
+// html,
+// body {
+//   height: 100%;
+// }
+
+// body {
+//   margin: 0;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+// }
+
+.input-icon {
+  color: rgb(0, 103, 71) !important;
 }
 
-mat-form-field.mat-form-field-invalid{
-  .mat-mdc-form-field-bottom-align{
+mat-form-field.mat-form-field-invalid {
+  .mat-mdc-form-field-bottom-align {
     background: #ffcbcb !important;
     border-radius: 0 0 10px 10px;
   }

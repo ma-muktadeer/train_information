@@ -1,27 +1,33 @@
 @use '@angular/material' as mat;
 
 // 1. Required core styles
-@include mat.core();
+// @include mat.core();
 
-// 2. Define custom M3 theme
-$my-light-theme: mat.define-theme((color: (theme-type: light,
-        primary: mat.$violet-palette, // Use your own palette here if needed
-        tertiary: mat.$blue-palette,
+html {
+  color-scheme: light dark;
+  @include mat.theme((color: (primary: mat.$azure-palette,
+        theme-type: light),
+      // color: mat.$violet-palette,
+      // color: mat.$violet-palette,
+      typography: (plain-family: Roboto,
+        brand-family: Open Sans,
+        bold-weight: 900,
+        medium-weight: 500,
+        regular-weight: 300,
       ),
-      typography: (brand-family: 'Roboto',
-        plain-family: 'Roboto',
-      ),
-      density: (scale: 0,
-      )));
+      density: 0),
+  );
 
-// 3. Apply the theme to components inside a selector (required in M3)
-:root {
-  @include mat.all-component-themes($my-light-theme);
-}
+  body {
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+  }
 
-mat-form-field {
-  @include mat.form-field-theme($my-light-theme);
-  width: 100% !important;
+  .darkMode {
+    @include mat.theme((color:(primary: mat.$azure-palette,
+          theme-type: dark,
+        )))
+  }
 }
 
 .custom-input-group {
