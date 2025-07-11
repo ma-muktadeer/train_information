@@ -54,9 +54,19 @@ export class LoginComponent {
       //   this.router.navigate(['/dashboard']);
       // }, 1500);
 
-      const res = await this._apiService.login({mobile_number, password});
+      try {
+        const res = await this._apiService.login({mobile_number, password});
+        console.log('getting login response', res);
+        this.router.navigate(['/train-matrix']);
+      } catch (error) {
+        this.isLoading = false;
+        console.error('Login failed:', error);
+        this.snackBar.open('লগইন ব্যর্থ! দয়া করে আবার চেষ্টা করুন।', 'বন্ধ করুন', {
+          duration: 3000,
+          panelClass: ['mat-toolbar', 'mat-warn'],
+        });
+      }
 
-      console.log('getting login response', res);
 
     }
   }
