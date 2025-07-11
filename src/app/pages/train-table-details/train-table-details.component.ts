@@ -22,7 +22,7 @@ export class TrainTableDetailsComponent implements OnChanges {
   @Input({ required: true }) serchigValue = signal<any>(null);
   @Input({ required: true }) isOpenComponent!: string;
   // @Input({ required: true }) isOpenComponent = signal<string>(null);
-  isLoading = signal<boolean>(false);
+  isLoading = signal<boolean>(true);
 
   trainStationList = signal<ITrainResponse>(null);
 
