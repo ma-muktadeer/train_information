@@ -29,7 +29,7 @@
             @let getDays = trainStationList().data.days;
             @for (day of daysOfWeek; track $index) {
             <div
-              class="w-8 h-8 bg-location-icon rounded flex items-center justify-center text-sm font-medium mr-2 px-6 text-white"
+              class="w-8 h-8 rounded flex items-center justify-center text-sm font-medium mr-2 px-6 text-white"
               [ngClass]="{'bg-location-icon': getDays.includes(day), 'bg-red-400 mr-4': !getDays.includes(day)}"
               [matBadge]="getDays.includes(day) ? '' : 'Off'">
               {{ day }}
@@ -179,75 +179,83 @@
 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 mx-auto">
 
   @if(isOpenComponent===trainInfo.trip_number){
-  <!-- @if(isOpenComponent()===trainInfo.trip_number){ -->
-  <div class="overflow-auto max-h-[400px] max-w-full border rounded-lg relative">
-    @if(isSerching() && false){
-    <div class="progress-container">
-      <mat-progress-bar mode="determinate" [value]="progressState.percent">
-      </mat-progress-bar>
+  <!-- <div class="overflow-auto max-h-[400px] max-w-full border rounded-lg relative"> -->
+  @if(isSerching() && false){
+  <div class="progress-container">
+    <mat-progress-bar mode="determinate" [value]="progressState.percent">
+    </mat-progress-bar>
 
-      <div class="progress-info">
-        <span>{{progressState.percent}}% সম্পূর্ণ</span>
-        <span>সফল: {{progressState.successCount}}</span>
-        <span>ব্যর্থ: {{progressState.failedCount}}</span>
-        <span>মোট: {{progressState.total}}</span>
-      </div>
+    <div class="progress-info">
+      <span>{{progressState.percent}}% সম্পূর্ণ</span>
+      <span>সফল: {{progressState.successCount}}</span>
+      <span>ব্যর্থ: {{progressState.failedCount}}</span>
+      <span>মোট: {{progressState.total}}</span>
     </div>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="isSerching()">
+    {{isSerching() ? 'সার্চ চলছে...' : 'সকল সিট খুঁজুন'}}
+  </button>
+  }@else {
+  @for (seatType of seatTypeList(); track $index) {
+  <div class="p-4 border-2 border-gray-300 rounded-xl shadow bg-white">
+    <h2 class="text-xl text-gray-200 text-center bg-location-icon font-bold mb-4 uppercase border-b">
+      {{ seatType }} Seat Type
+    </h2>
 
-    <!-- সার্চ বাটন -->
-    <button mat-raised-button color="primary" [disabled]="isSerching()">
-      {{isSerching() ? 'সার্চ চলছে...' : 'সকল সিট খুঁজুন'}}
-    </button>
-    }@else {
-    <table mat-table [dataSource]="dataSource()" class="min-w-max table-auto striped-table">
+    <div class="overflow-auto max-h-[400px]">
+      <table mat-table [dataSource]="dataSource()" class="min-w-max table-auto striped-table">
+        <ng-container matColumnDef="fromTo">
+          <th mat-header-cell *matHeaderCellDef class="sticky left-0 top-0 z-30 table-head-color text-white font-bold">
+            From → To
+          </th>
+          <td mat-cell *matCellDef="let element"
+            class="sticky left-0 z-20 table-head-color text-white border font-bold">
+            {{element.fromTo}}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="fromTo">
-        <th mat-header-cell *matHeaderCellDef class="sticky left-0 top-0 z-30 table-head-color text-white font-bold">
-          From → To
-        </th>
-        <td mat-cell *matCellDef="let element" class="sticky left-0 z-20 table-head-color text-white border font-bold">
-          {{element.fromTo}}
-        </td>
-      </ng-container>
-
-      @for (column of getDisplayedColumns(); track column) {
-      <ng-container [matColumnDef]="column">
-        <th mat-header-cell *matHeaderCellDef class="text-white border py-2 px-4 table-head-color">
-          {{ column }}
-        </th>
-        <td mat-cell *matCellDef="let element" class="border td-p-0 text-center relative z-1">
-          @if(element[column]){
+        @for (column of getDisplayedColumns(); track column) {
+        <ng-container [matColumnDef]="column">
+          <th mat-header-cell *matHeaderCellDef class="text-white border py-2 px-4 table-head-color">
+            {{ column }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="border td-p-0 text-center relative z-1">
+            @if(element[column]){
             @let seatData = element[column];
-            @if(seatData.get('S_CHAIR')){
-              @let seatInfo = seatData.get('S_CHAIR');
-              <div class="p-1">
-                <div class="bg-green-50 border rounded-xl p-0 w-[100%] text-center shadow-sm overflow-hidden">
-                  <div class="text-green-700 font-bold text-lg p-0">{{seatInfo.seats}}</div>
+            @if(seatData.get(seatType)){
+            @let seatInfo = seatData.get(seatType);
+            <div class="p-1">
+              <div class="bg-green-50 border rounded-xl p-0 w-[100%] text-center shadow-sm overflow-hidden">
+                <div class="text-green-700 font-bold text-lg p-0">{{seatInfo.seats}}</div>
 
-                  <div class="text-green-800 text-sm p-0">৳{{seatInfo.fare}}</div>
-                  <div class="p-1">
-                    <div class="buy-btn rounded">
-                      <i class="fa fa-cart-plus"></i>
-                      Buy
-                    </div>
+                <div class="text-green-800 text-sm p-0">৳{{seatInfo.fare}}</div>
+                <div class="p-1">
+                  <div class="buy-btn rounded">
+                    <i class="fa fa-cart-plus"></i>
+                    Buy
                   </div>
                 </div>
               </div>
+            </div>
             }
-          }
-        </td>
-      </ng-container>
-      }
+            }
+          </td>
+        </ng-container>
+        }
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns()" class="sticky top-0 z-25"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns();" class="mat-row-custom"></tr>
-    </table>
-    }
+        <tr mat-header-row *matHeaderRowDef="displayedColumns()" class="sticky top-0 z-25"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns();" class="mat-row-custom"></tr>
+      </table>
+    </div>
   </div>
+  }
+  }
+  <!-- </div> -->
   }
 </div>
 
-}@else {
+}
+@else {
 <div class="space-y-4 p-4">
   <!-- Date Card Skeleton -->
   <div
