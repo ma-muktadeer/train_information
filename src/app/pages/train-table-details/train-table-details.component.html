@@ -33,18 +33,7 @@
                   [ngClass]="{'bg-location-icon': getDays.includes(day), 'bg-red-400 mr-4': !getDays.includes(day)}"
                   [matBadge]="getDays.includes(day) ? '' : 'Off'">
                     {{ day }}
-                  </div>
-                <!-- @if(getDays.includes(day)){
-                  <div class="w-8 h-8 bg-location-icon rounded flex items-center justify-center text-sm font-medium mr-2 px-6 text-white"
-                    >{{ day }}
-                  </div>
-
-                }@else {
-                  <div matBadge=""
-                  class="w-8 h-8 bg-location-icon bg-red-400 rounded flex items-center justify-center text-sm font-medium mr-2 px-6 text-white"
-                    >{{ day }}
-                  </div>
-                } -->
+                </div>
               }
             </div>
 
