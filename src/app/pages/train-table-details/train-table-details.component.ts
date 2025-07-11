@@ -34,69 +34,72 @@ export class TrainTableDetailsComponent implements OnChanges {
 
   trainStationList = signal<ITrainResponse>(null);
 
-  displayedColumns = ['fromTo', 'Parbatipur', 'Fulbari', 'BiramPur', 'Joypurhat', 'Joypurhat1', 'Joypurhat2', 'Joypurhat3', 'Akkelpur', 'Santahar', 'Ahsanganj', 'Natore', 'Muladuli', 'Ibrahimabad'];
-  dataSource = [
-    {
-      fromTo: 'Joypurhat',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '৳65', Natore: '৳95', Muladuli: '', Ibrahimabad: ''
-    },
-    {
-      fromTo: 'Santahar',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '৳55', Ibrahimabad: ''
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-    {
-      fromTo: 'Natore',
-      Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
-    },
-  ];
+  displayedColumns = signal<string[]>(['fromTo']);
+  // displayedColumns = ['fromTo', 'Parbatipur', 'Fulbari', 'BiramPur', 'Joypurhat', 'Joypurhat1', 'Joypurhat2', 'Joypurhat3', 'Akkelpur', 'Santahar', 'Ahsanganj', 'Natore', 'Muladuli', 'Ibrahimabad'];
+  // dataSource = [
+  //   {
+  //     fromTo: 'Joypurhat',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '৳65', Natore: '৳95', Muladuli: '', Ibrahimabad: ''
+  //   },
+  //   {
+  //     fromTo: 'Santahar',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '৳55', Ibrahimabad: ''
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  //   {
+  //     fromTo: 'Natore',
+  //     Parbatipur: '', Fulbari: '', BiramPur: '', Joypurhat: '', Joypurhat1: '', Joypurhat2: '', Joypurhat3: '', Akkelpur: '', Santahar: '', Ahsanganj: '', Natore: '', Muladuli: '', Ibrahimabad: '৳50'
+  //   },
+  // ];
+
+  dataSource = signal<any[]>([]);
 
   daysOfWeek = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
@@ -105,7 +108,6 @@ export class TrainTableDetailsComponent implements OnChanges {
     private readonly _paralalService: ParalalRequestService,
     public progressService: ProgressService
   ) { }
-
 
   ngOnInit() {
     console.log('train name', this.trainInfo.trip_number);
@@ -160,7 +162,7 @@ export class TrainTableDetailsComponent implements OnChanges {
   requests;
   responseValue: Map<string, TrainResponse[]> = new Map<string, TrainResponse[]>();
   async sendRequest() {
-    debugger
+
     if (this.stationGroupList.size === 0) {
       return;
     }
@@ -170,7 +172,6 @@ export class TrainTableDetailsComponent implements OnChanges {
           { key: key, requests: value },
           (data: TrainResponse[], key: string) => {
             this._buildResponseValue(data, key);
-
           },
           5,
           300
@@ -188,22 +189,71 @@ export class TrainTableDetailsComponent implements OnChanges {
     } else {
       this.responseValue.set(key, data);
     }
+    this._buildDataSource(key, data);
     console.log(`getting data for key ${key}`, data);
-    console.log(`all response value`, this.responseValue);
+    // console.log(`all response value`, this.responseValue);
+
+  }
+
+  seatTypeList = signal<string[]>([]);
+  private _buildDataSource(key: string, data: TrainResponse[]) {
+    // dataSource
+    // displayedColumns
+    const hasKey: any = this.dataSource().find(dt => dt.fromTo === key) ?? { fromTo: key };
+    // if (!hasKey) {
+    //   this.dataSource.update((value)=>[...value, {fromTo: key}])
+    // }
+    const dt = data[0].data;
+    const fTrain = dt.trains.find(train => train.train_model === this.trainInfo.train_model)
+    if (!fTrain) {
+      return;
+    }
+    debugger
+    for (let index = 1; index < this.displayedColumns().length; index++) {
+      const element = this.displayedColumns()[index];
+      if (fTrain.destination_city_name === element.toLowerCase()) {
+        const seatType = fTrain.seat_types;
+        let vl = new Map<string, any>();
+        seatType.forEach((type) => {
+          this.seatTypeList.update((value) => [...value, type.type]);
+          vl.set(type.type, {
+            fare: Number(type['fare']) || 0 + Number(type['vat_amount']) || 0,
+            seats: Number(type['seat_counts']['offline']) + Number(type['seat_counts']['online']),
+
+          })
+        });
+        hasKey[element] = vl;
+      }
+      this.dataSource.update(current => {
+        const index = current.findIndex(item => item.fromTo === key);
+
+        if (index !== -1) {
+          return current.map(item =>
+            item.fromTo === key ? { ...item, ...hasKey } : item
+          );
+        } else {
+          return [...current, hasKey];
+        }
+      });
+    }
+
+console.log('dataSource', this.dataSource());
+
 
   }
   stationGroupList: Map<string, TrainScearchPayload[]> = new Map<string, TrainScearchPayload[]>();
   private async _buildTrainStationGroup(routes: IRouteStation[]) {
     console.log('routs list', routes);
+    this.displayedColumns.update((value) => [...value, ...routes.map(route => route.city)]);
 
-    routes.forEach((route, index) => {
-      const key = route.city;
+    this.displayedColumns().forEach((station, index) => {
+      const key = station;
       let stationList: TrainScearchPayload[] = [];
-      routes.forEach((stattion, idx) => {
+      this.displayedColumns().forEach((stattion, idx) => {
         if (index < idx) {
           stationList.push({
             from_city: key,
-            to_city: stattion.city,
+            to_city: stattion,
             date_of_journey: this.serchigValue().date_of_journey,
             seat_class: this.serchigValue().seat_class,
           });
@@ -218,7 +268,7 @@ export class TrainTableDetailsComponent implements OnChanges {
 
   }
   getDisplayedColumns() {
-    return this.displayedColumns.filter(col => col !== 'fromTo');
+    return this.displayedColumns().filter(col => col !== 'fromTo');
   }
 
 }
