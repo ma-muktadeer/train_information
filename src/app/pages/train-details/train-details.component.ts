@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
 import { map, Observable, startWith } from 'rxjs';
-import { Station } from '../../../interfaces/Station';
+import { Station, TrainScearchPayload } from '../../../interfaces/Station';
 import { TrainResponse } from '../../../interfaces/train-details';
 import { ApiService } from '../../../services/api.service';
 import { StationsService } from '../../../services/stations.service';
@@ -32,7 +32,7 @@ export class TrainDetailsComponent {
 
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
-  searchData = signal<any>({});
+  searchData = signal<TrainScearchPayload>(null);
   trainDetailsData = signal<TrainResponse>(null);
 
   constructor(
@@ -89,7 +89,7 @@ export class TrainDetailsComponent {
       const date_of_journey = dateObj.toFormat('dd-MMM-yyyy');
       console.log('date_of_journey', date_of_journey);
 
-      const data = {
+      const data: TrainScearchPayload = {
         from_city: this.trainForm.get('from_city')!.value,
         to_city: this.trainForm.get('to_city')!.value,
         date_of_journey: date_of_journey,

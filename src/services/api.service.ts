@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { catchError, firstValueFrom, lastValueFrom } from 'rxjs';
-import { Station } from '../interfaces/Station';
+import { Station, TrainScearchPayload } from '../interfaces/Station';
 import { TrainResponse } from '../interfaces/train-details';
 import { ITrainResponse } from '../interfaces/train-routs';
 import { isPlatformBrowser } from '@angular/common';
@@ -67,7 +67,7 @@ export class ApiService {
     return name.replace(/'/g, '');
   }
 
-  async searchSeat(data: any): Promise<TrainResponse> {
+  async searchSeat(data: TrainScearchPayload): Promise<TrainResponse> {
     const pathExtension = '/api/v1.0/web/bookings/search-trips-v2';
     try {
       return this._getRequestValue(data, pathExtension);
