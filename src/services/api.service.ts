@@ -136,7 +136,7 @@ export class ApiService {
 
   private _buildSecHeader(): { headers: HttpHeaders } {
     const baseHeaders = this._buildHeader();
-    const token = this._getTokenSafely();
+    const token = this.getTokenSafely();
 
     if (token) {
       baseHeaders.headers = baseHeaders.headers.set('Authorization', `Bearer ${token}`);
@@ -145,7 +145,7 @@ export class ApiService {
     return baseHeaders;
   }
 
-  private _getTokenSafely(): string | null {
+  getTokenSafely(): string | null {
     try {
       return this.sessionStore?.getItem(this._token) ?? null;
     } catch (e) {
@@ -158,21 +158,45 @@ export class ApiService {
       // Network error (no internet, CORS, etc.)
       return new Error('Network error. Please check your connection.');
     }
-
+    debugger
     switch (error.status) {
       case 400:
-        return new Error(error.error?.message || 'Invalid request format.');
+        throw {
+          status: error.status,
+          message: error.error?.message || 'Invalid request format.',
+          originalError: error // পুরো error টা রাখুন (যদি দরকার হয়)
+        };
       case 401:
-        return new Error(error.error?.message || 'Invalid credentials.');
       case 403:
-        return new Error('Access denied. Contact support.');
+        this.removeToken();
+        throw {
+          status: error.status,
+          code: error.error?.error?.code || 'AUTH_ERROR',
+          message: 'Invalid credentials.',
+          originalError: error
+        };
       case 404:
-        return new Error('API endpoint not found.');
+        throw {
+          status: error.status,
+          message: 'API endpoint not found.',
+          originalError: error
+        };
       case 500:
-        return new Error('Server error. Try again later.');
+        throw {
+          status: error.status,
+          message: 'Server error. Try again later.',
+          originalError: error
+        };
       default:
-        return new Error(`Unexpected error (${error.status}).`);
+        throw {
+          status: error.status,
+          message: `Unexpected error (${error.status}).`,
+          originalError: error
+        };
     }
+  }
+  removeToken() {
+    this.sessionStore.removeItem(this._token);
   }
 
   private _handleLoginError(error: unknown): Error {

@@ -33,7 +33,7 @@ export class TrainDetailsComponent {
   min: Date = new Date();
   max: Date = new Date(new Date().setDate(new Date().getDate() + 10));
   searchData = signal<any>({});
-  trainDetailsData= signal<TrainResponse>(null);
+  trainDetailsData = signal<TrainResponse>(null);
 
   constructor(
     private readonly _apiService: ApiService,
@@ -41,9 +41,10 @@ export class TrainDetailsComponent {
     private readonly _stationService: StationsService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private location: Location,
-    private dialog: MatSnackBar
+    private dialog: MatSnackBar,
+    private readonly _location: Location
   ) {
-
+    this._checkToken();
     // Initialization logic can go here
     var trainData: any = this._router.getCurrentNavigation()?.extras.state;
     debugger
@@ -56,6 +57,12 @@ export class TrainDetailsComponent {
       if (isPlatformBrowser(platformId)) {
         this.location.back();
       }
+    }
+  }
+  private _checkToken() {
+    if (!this._apiService.getTokenSafely()) {
+      this._router.navigate(['/login']);
+      return;
     }
   }
 
@@ -95,14 +102,44 @@ export class TrainDetailsComponent {
         const value = await this._apiService.searchSeat(data);
         console.log('value', value);
         // এখান থেকে data UI তে পাঠান
-        this.trainDetailsData.update(()=>value);
+        this.trainDetailsData.update(() => value);
       } catch (error) {
         console.error('API Error:', error);
-        // ইউজারকে কিছু দেখান যেমন:
-        this.dialog.open('সার্ভার থেকে ডেটা আনতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।', 'বন্ধ করুন', {
+        console.error('API Error:', error);
+
+        // Default message
+        let errorMessage = 'সার্ভার থেকে ডেটা আনতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।';
+
+        // যদি error অবজেক্টে status বা code থাকে
+        if (error.status || error.code) {
+          switch (error.status) {
+            case 400:
+              errorMessage = 'অবৈধ অনুরোধ। আবার চেষ্টা করুন।';
+              break;
+            case 401:
+            case 403:
+              errorMessage = 'লগইন সমস্যা। আবার লগইন করুন।';
+              break;
+            case 404:
+              errorMessage = 'ডেটা পাওয়া যায়নি।';
+              break;
+            case 500:
+              errorMessage = 'সার্ভার সমস্যা। পরে চেষ্টা করুন।';
+              break;
+            default:
+              errorMessage = `ত্রুটি কোড: ${error.status}`;
+          }
+        }
+        this.dialog.open(errorMessage, 'বন্ধ করুন', {
           duration: 3000,
           panelClass: ['mat-toolbar', 'mat-warn'],
         });
+        if (error.status == 401 || error.status == 403) {
+          this._apiService.removeToken();
+          this._router.navigate(['/login']);
+        } else {
+          this._location.back();
+        }
       }
     }
   }
