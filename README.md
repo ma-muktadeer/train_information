@@ -75,7 +75,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 | **1** | **2** |
 |-------|-------|
-| <img src="src/assets/sc/s-dt1.png" height="200"> | <img src="src/assets/sc/s-dt2.png" height="200"> |
+| <img src="src/assets/sc/s-dt1.png" height="250"> | <img src="src/assets/sc/s-dt2.png" height="250"> |
 <!-- | **1** | **2** |
 |-------|-------|
 | ![Train schedule Page](src/assets/sc/s-dt1.png) | ![Train schedule Page](src/assets/sc/s-dt2.png) | -->
