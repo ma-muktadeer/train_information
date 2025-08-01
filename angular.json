@@ -43,6 +43,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "src/assets/sc",
+                "output": "/assets/sc"
+              },
+              {
+                "glob": "**/*",
                 "input": "src/assets/icons",
                 "output": "/assets/icons"
               }
