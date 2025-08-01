@@ -71,18 +71,14 @@ For more information on using the Angular CLI, including detailed command refere
 - **1**: ![Train List Page](src/assets/sc/tr-search.png)
 
 
-### 4. Train schedule Page
+### 4. Train Schedule Page
+
 | **1** | **2** |
 |-------|-------|
-| ![Train schedule Page](src/assets/sc/s-dt1.png) | ![Train schedule Page](src/assets/sc/s-dt2.png) |
-<!-- <div style="display: flex; gap: 20px;">
-  <div style="flex: 1;">
-- **1**: ![Train schedule Page](src/assets/sc/s-dt1.png)
-  </div>
-  <div style="flex: 1;">
-- **2**: ![Train schedule Page](src/assets/sc/s-dt2.png)
-  </div>
-</div> -->
+| <img src="src/assets/sc/s-dt1.png" height="200"> | <img src="src/assets/sc/s-dt2.png" height="200"> |
+<!-- | **1** | **2** |
+|-------|-------|
+| ![Train schedule Page](src/assets/sc/s-dt1.png) | ![Train schedule Page](src/assets/sc/s-dt2.png) | -->
 
 
 ### 5. Train Seat List Page
