@@ -88,7 +88,8 @@ For more information on using the Angular CLI, including detailed command refere
 | <img src="src/assets/sc/seat1.png" height="250"> | <img src="src/assets/sc/seat2.png" height="250"> |
 
 | **3** |
-|-------|-------|
+|-------|
 | <img src="src/assets/sc/seat3.png" height="250"> |
+
 
 
