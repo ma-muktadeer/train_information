@@ -72,8 +72,15 @@ For more information on using the Angular CLI, including detailed command refere
 
 
 ### 4. Train schedule Page
+<div style="display: flex; gap: 20px;">
+  <div style="flex: 1;">
 - **1**: ![Train schedule Page](src/assets/sc/s-dt1.png)
+  </div>
+  <div style="flex: 1;">
 - **2**: ![Train schedule Page](src/assets/sc/s-dt2.png)
+  </div>
+</div>
+
 
 
 ### 5. Train Seat List Page
