@@ -1,4 +1,4 @@
-# TstMat
+# Train Matrix
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
 
@@ -57,3 +57,28 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Some application screenshorts
+### 1. Login Page
+- **1**: ![Login Page](src/assets/sc/login.png)
+
+
+### 2. Train Searching Page
+- **1**: ![Train Search Page](src/assets/sc/search.png)
+
+
+### 3. Train List Page
+- **1**: ![Train List Page](src/assets/sc/tr-search.png)
+
+
+### 4. Train schedule Page
+- **1**: ![Train schedule Page](src/assets/sc/s-dt1.png)
+- **2**: ![Train schedule Page](src/assets/sc/s-dt2.png)
+
+
+### 5. Train Seat List Page
+- **1**: ![Train Seat List Page](src/assets/sc/seat1.png)
+- **2**: ![Train Seat List Page](src/assets/sc/seat2.png)
+- **3**: ![Train Seat List Page](src/assets/sc/seat3.png)
+
+
