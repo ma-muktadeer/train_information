@@ -60,15 +60,18 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Some application screenshorts
 ### 1. Login Page
-- **1**: ![Login Page](src/assets/sc/login.png)
+
+- **1**: <img src="src/assets/sc/login.png" height="250">
 
 
 ### 2. Train Searching Page
-- **1**: ![Train Search Page](src/assets/sc/search.png)
+
+- **1**: <img src="src/assets/sc/search.png" height="250">
 
 
 ### 3. Train List Page
-- **1**: ![Train List Page](src/assets/sc/tr-search.png)
+
+- **1**: <img src="src/assets/sc/tr-search.png" height="250">
 
 
 ### 4. Train Schedule Page
@@ -85,9 +88,6 @@ For more information on using the Angular CLI, including detailed command refere
 | <img src="src/assets/sc/seat1.png" height="250"> | <img src="src/assets/sc/seat2.png" height="250"> |
 | **3** |
 |-------|
-| <img src="src/assets/sc/seat3.png" height="250"> | <img src="src/assets/sc/seat3.png" height="250"> |
-<!-- - **1**: ![Train Seat List Page](src/assets/sc/seat1.png)
-- **2**: ![Train Seat List Page](src/assets/sc/seat2.png)
-- **3**: ![Train Seat List Page](src/assets/sc/seat3.png) -->
+| <img src="src/assets/sc/seat3.png" height="250"> |
 
 
