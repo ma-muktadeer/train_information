@@ -97,6 +97,8 @@ export class ParalalRequestService {
       status: processed === data.requests.length ? 'completed' : 'error'
     });
 
+    console.error('failed response', failedRequests);
+    
     return { success: allResults, failed: failedRequests };
   }
 }
