@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, NgZone, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { isPlatformBrowser } from '@angular/common';
+declare const turnstile: any;
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,12 @@ import { ApiService } from '../../../services/api.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent {
+  turnstileToken: string | null = null;
+  key = '0x4AAAAAACA8IXKAMVC35vzE';
+  // key = '0x4AAAAAAB5VTjZ90pUxRuXR';
+  secKey = '0x4AAAAAACF4QEVxtCqRtiS3z8TrSkMLGcA';
   loginForm: FormGroup;
   hidePassword = true;
   isLoading = false;
@@ -29,11 +36,43 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
-    private readonly _apiService: ApiService
+    private readonly _apiService: ApiService,
+    private ngZone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.loginForm = this.fb.group({
       mobile_number: ['', [Validators.required, Validators.pattern('[0-9]{11,}')]],
       password: ['', Validators.required]
+    });
+  }
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.waitForTurnstile();
+
+    }
+  }
+
+  waitForTurnstile() {
+    const interval = setInterval(() => {
+      if (window.hasOwnProperty('turnstile')) {
+        clearInterval(interval);
+        this.renderWidget();
+      }
+    }, 100);
+  }
+widgetId: any;
+  renderWidget() {
+    this.ngZone.runOutsideAngular(() => {
+      this.widgetId = turnstile.render('.cf-turnstile', {
+        sitekey: '0x4AAAAAACF4QCOLAB6KPz0Q',
+        theme: 'auto',
+        callback: (token: string) => {
+          this.ngZone.run(() => {
+            this.turnstileToken = token;
+            console.log("TURNSTILE TOKEN:", token);
+          });
+        }
+      });
     });
   }
   async onSubmit() {

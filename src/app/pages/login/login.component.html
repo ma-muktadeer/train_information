@@ -1,75 +1,137 @@
-<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-  <div class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg">
-
+<div
+  class="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-6 lg:p-8"
+>
+  <div
+    class="w-full max-w-xl mx-auto p-6 sm:p-8 lg:p-10 bg-white rounded-2xl shadow-lg"
+  >
     <div class="flex items-center justify-between mb-8">
       <div class="flex items-center space-x-3">
         <i class="fas fa-subway text-[rgb(0,103,71)] text-4xl"></i>
-        <h1 class=" text-2xl font-bold" style="color: rgb(0, 103, 71);">BR Train Seat Matrix</h1>
+        <h1 class="text-2xl font-bold" style="color: rgb(0, 103, 71)">
+          BR Train Seat Matrix
+        </h1>
       </div>
-      <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+      <span
+        class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full"
+      >
         BETA
       </span>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-
       <div class="mb-6">
-        <mat-form-field appearance="fill" class="example-full-width w-full p-0 custom-input-group">
+        <mat-form-field
+          appearance="fill"
+          class="example-full-width w-full p-0 custom-input-group"
+        >
           <mat-label>Mobile Number</mat-label>
-          <mat-icon matPrefix class="text-gray-400 fa-solid fa-mobile-screen input-icon"></mat-icon>
-          <input matInput placeholder="Login" formControlName="mobile_number" required />
-          @if (loginForm.get('mobile_number')?.hasError('required') && loginForm.get('mobile_number')?.touched) {
-          <mat-error class="error-message">Please Enter Uour Login Mobile Number</mat-error>
-          }
-          @if (loginForm.get('mobile_number')?.hasError('pattern') && loginForm.get('mobile_number')?.touched) {
-          <mat-error class="error-message">Please Enter Your Valid Mobile Number</mat-error>
+          <mat-icon
+            matPrefix
+            class="text-gray-400 fa-solid fa-mobile-screen input-icon"
+          ></mat-icon>
+          <input
+            matInput
+            placeholder="Login"
+            formControlName="mobile_number"
+            required
+          />
+          @if (loginForm.get('mobile_number')?.hasError('required') &&
+          loginForm.get('mobile_number')?.touched) {
+          <mat-error class="error-message"
+            >Please Enter Uour Login Mobile Number</mat-error
+          >
+          } @if (loginForm.get('mobile_number')?.hasError('pattern') &&
+          loginForm.get('mobile_number')?.touched) {
+          <mat-error class="error-message"
+            >Please Enter Your Valid Mobile Number</mat-error
+          >
           }
         </mat-form-field>
       </div>
 
-
       <div class="mb-6">
-        <mat-form-field appearance="fill" class="example-full-width w-full p-0 custom-input-group">
+        <mat-form-field
+          appearance="fill"
+          class="example-full-width w-full p-0 custom-input-group"
+        >
           <mat-label>Password</mat-label>
-          <mat-icon matPrefix class="text-gray-400 fas fa-lock input-icon"></mat-icon>
-          <input matInput type="password" placeholder="Enter your password" formControlName="password"
-            aria-label="Password">
-          @if (loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) {
+          <mat-icon
+            matPrefix
+            class="text-gray-400 fas fa-lock input-icon"
+          ></mat-icon>
+          <input
+            matInput
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            aria-label="Password"
+          />
+          @if (loginForm.get('password')?.hasError('required') &&
+          loginForm.get('password')?.touched) {
           <mat-error class="error-message">Password is required</mat-error>
           }
         </mat-form-field>
         <div class="text-right text-xs mt-1">
-          <a href="/forgot-password" class="text-green-600 hover:underline">Forgot password?</a>
+          <a href="/forgot-password" class="text-green-600 hover:underline"
+            >Forgot password?</a
+          >
         </div>
       </div>
-      <button mat-raised-button type="submit" [disabled]="loginForm.invalid"
-        class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary">
-        <mat-icon matPrefix class="text-gray-400" [svgIcon]="'search_icon'"></mat-icon>
+      <!-- <div
+        class="cf-turnstile"
+        data-sitekey="0x4AAAAAACF4QCOLAB6KPz0Q"
+        data-theme="auto"
+      ></div> -->
+      <div
+        class="cf-turnstile"></div>
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="w-full py-3 rounded-xl font-semibold text-base mt-4 btn-primary"
+      >
+        <mat-icon
+          matPrefix
+          class="text-gray-400"
+          [svgIcon]="'search_icon'"
+        ></mat-icon>
         লগইন
       </button>
-
     </form>
 
     <p class="text-center text-gray-700 text-sm mb-8">
       This project is open source. Check it out on
-      <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-        class="text-green-600 hover:underline font-medium">
+      <a
+        href="https://github.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-green-600 hover:underline font-medium"
+      >
         GitHub
       </a>
       .
     </p>
 
     <div
-      class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg">
-      <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
+      class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-gray-50 rounded-lg"
+    >
+      <a
+        href="#"
+        class="flex items-center space-x-2 text-green-600 hover:underline"
+      >
         <span class="material-icons text-base">event_available</span>
         <span class="text-sm">Seat Availability</span>
       </a>
-      <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
+      <a
+        href="#"
+        class="flex items-center space-x-2 text-green-600 hover:underline"
+      >
         <span class="material-icons text-base">attach_money</span>
         <span class="text-sm">Train Fare</span>
       </a>
-      <a href="#" class="flex items-center space-x-2 text-green-600 hover:underline">
+      <a
+        href="#"
+        class="flex items-center space-x-2 text-green-600 hover:underline"
+      >
         <span class="material-icons text-base">feedback</span>
         <span class="text-sm">Feedback</span>
       </a>
