@@ -27,7 +27,7 @@ export class LoginComponent {
   turnstileToken: string | null = null;
   key = '0x4AAAAAACA8IXKAMVC35vzE';
   // key = '0x4AAAAAAB5VTjZ90pUxRuXR';
-  secKey = '0x4AAAAAACF4QEVxtCqRtiS3z8TrSkMLGcA';
+
   loginForm: FormGroup;
   hidePassword = true;
   isLoading = false;
